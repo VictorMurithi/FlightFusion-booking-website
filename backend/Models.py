@@ -1,5 +1,5 @@
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -37,9 +37,22 @@ class Flight(db.Model, SerializerMixin):
     arrival_time = db.Column(db.DateTime, nullable=False)
     departure_time = db.Column(db.DateTime, nullable=False)
     price = db.Column(db.Float, nullable=False)
+    departure_airport_id = db.Column(db.Integer, db.ForeignKey('airports.id'), nullable=False)
+    arrival_airport_id = db.Column(db.Integer, db.ForeignKey('airports.id'), nullable=False)
+
+    departure_airport = relationship("Airport", foreign_keys=[departure_airport_id], backref="departures")
+    arrival_airport = relationship("Airport", foreign_keys=[arrival_airport_id], backref="arrivals")
 
     bookings = relationship("Booking", back_populates="flight")
     passengers = relationship("FlightPassenger", back_populates="flight")
+
+class Airport(db.Model, SerializerMixin):
+    __tablename__ = 'airports'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    city = db.Column(db.String(100), nullable=False)
+    country = db.Column(db.String(100), nullable=False)
 
 class FlightPassenger(db.Model, SerializerMixin):
     __tablename__ = 'flight_passengers'
@@ -48,5 +61,5 @@ class FlightPassenger(db.Model, SerializerMixin):
     flight_id = db.Column(db.Integer, db.ForeignKey('flights.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    flight = relationship("Flight", backref=backref("passengers", cascade="all, delete-orphan"))
-    user = relationship("User", backref=backref("flights", cascade="all, delete-orphan"))
+    flight = relationship("Flight", back_populates="passengers")  
+    user = relationship("User", back_populates="flights")
