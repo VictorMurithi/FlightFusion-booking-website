@@ -1,8 +1,8 @@
-"""empty message
+"""added columns in flights and flightpassenger
 
-Revision ID: 137a7be6152c
+Revision ID: a269664b20ad
 Revises: 
-Create Date: 2024-02-13 21:43:04.343438
+Create Date: 2024-02-14 15:01:40.136117
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '137a7be6152c'
+revision = 'a269664b20ad'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,6 +38,8 @@ def upgrade():
     op.create_table('flights',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('airline', sa.String(length=100), nullable=False),
+    sa.Column('flight_class', sa.String(length=100), nullable=False),
+    sa.Column('destination', sa.String(length=100), nullable=False),
     sa.Column('arrival_time', sa.DateTime(), nullable=False),
     sa.Column('departure_time', sa.DateTime(), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
@@ -61,6 +63,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('flight_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('seat_number', sa.String(length=100), nullable=False),
     sa.ForeignKeyConstraint(['flight_id'], ['flights.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
