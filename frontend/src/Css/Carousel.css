@@ -11,7 +11,7 @@
   
   .carousel-wrapper {
     display: flex;
-    transition: transform 3s ease-in-out;
+    transition: transform 1.5s ease-in-out;
     height: 85vh;
   }
   
@@ -67,6 +67,7 @@
     padding: 0.5em;
     background-color: #F94B4B;
     width: 8em;
+    margin-top: 1em;
     border: none;
     border-radius: 5px;
     transition: all 0.5s ease;
