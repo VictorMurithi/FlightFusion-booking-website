@@ -32,7 +32,10 @@ const Carousel = () => {
               <p className="slide-text ">{slide.text}</p>
               <p className="slide-text txt2">{slide.text2}</p>
               <p className="slide-text txt2">{slide.text3}</p>
-              <button className='btn'>Book A Flight</button>
+              <div className='btn-holder'>
+                <button className='btns'>Book A Flight</button>
+              </div>
+              
             </div>
           </div>
         ))}
