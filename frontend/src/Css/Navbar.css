@@ -1,0 +1,18 @@
+.navbar{
+    margin: 0em 2em;
+    z-index: 1000;
+    background-color: transparent;
+    color: white;
+}
+.nav-link{
+    margin: 0em 1em;
+    color: white;
+}
+
+.App-logo{
+    height: 2em;
+}
+
+.navli{
+    color: white;
+}
