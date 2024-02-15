@@ -62,11 +62,21 @@
     margin-top: 2em;
   }
 
-  .btn{
-    padding: 5em;
-    background-color: F94B4B;
-    border: 1px solid F94B4B;
-    width: 8em;
+  .btns{
     color: white;
+    padding: 0.5em;
+    background-color: #F94B4B;
+    width: 8em;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.5s ease;
   }
+
+  .btns:hover{
+    background-color: transparent;
+    border: solid 1px white;
+    transform: translateY(-18%);
+    transition: all 0.5s ease;
+  }
+
 
