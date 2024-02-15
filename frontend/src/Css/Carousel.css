@@ -5,14 +5,13 @@
     top: -5em;
     width: 100%;
     margin: auto;
-    /* height: 30em; */
+    height: 30em;
     overflow: hidden;
   }
   
   .carousel-wrapper {
     display: flex;
-    transition: transform 1s ease-in-out;
-    height: 85vh;
+    transition: transform 0.5s ease-in-out;
   }
   
   .slide {

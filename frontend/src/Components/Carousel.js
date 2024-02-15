@@ -9,9 +9,9 @@ const Carousel = () => {
 
   // Define your slides as an array of objects with image and text properties
   const slides = [
-    { image: img1, text: 'FLIGHT FUSION BOOKINGS' },
-    { image: img2, text: 'FLIGHT FUSION BOOKINGS' },
-    { image: img3, text: 'FLIGHT FUSION BOOKINGS' },
+    { image: img1, text: 'Welcome to the Library' },
+    { image: img2, text: 'Discover New Worlds in Books' },
+    { image: img3, text: 'Expand Your Imagination' },
   ];
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Carousel = () => {
         {slides.map((slide, index) => (
           <div key={index} className="slide" style={{ backgroundImage: `url(${slide.image})` }}>
             <div className="overlay">
-              <p className="slide-text ">{slide.text}</p>
+              <p className="slide-text">{slide.text}</p>
             </div>
           </div>
         ))}
