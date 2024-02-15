@@ -9,16 +9,16 @@ const Carousel = () => {
 
   // Define your slides as an array of objects with image and text properties
   const slides = [
-    { image: img1, text: 'FLIGHT FUSION BOOKINGS' },
-    { image: img2, text: 'FLIGHT FUSION BOOKINGS' },
-    { image: img3, text: 'FLIGHT FUSION BOOKINGS' },
+    { image: img1, text: 'FLIGHT FUSION BOOKINGS', text2: 'Discover the world with convenience.' , text3: 'Book a flight with us today'},
+    { image: img2, text: 'FLIGHT FUSION BOOKINGS', text2: 'Discover the world with convenience.' , text3: 'Book a flight with us today' },
+    { image: img3, text: 'FLIGHT FUSION BOOKINGS', text2: 'Discover the world with convenience.' , text3: 'Book a flight with us today' },
   ];
 
   useEffect(() => {
     // Automatically advance to the next slide every 3 seconds
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [slides.length]);
@@ -30,6 +30,12 @@ const Carousel = () => {
           <div key={index} className="slide" style={{ backgroundImage: `url(${slide.image})` }}>
             <div className="overlay">
               <p className="slide-text ">{slide.text}</p>
+              <p className="slide-text txt2">{slide.text2}</p>
+              <p className="slide-text txt2">{slide.text3}</p>
+              <div className='btn-holder'>
+                <button className='btns'>Book A Flight</button>
+              </div>
+              
             </div>
           </div>
         ))}
