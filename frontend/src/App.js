@@ -6,6 +6,7 @@ import Signup from './Pages/SignupPage';
 import Bookings from './Pages/BookingsPage';
 import Profile from './Pages/ProfilePage';
 import FlightBooking from './Pages/FlightBooking';
+import ResetPassword from './Pages/ResetingPassword';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/flightbooking" element={<FlightBooking />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
       </Routes>
     </Router>
   );
