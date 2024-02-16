@@ -3,6 +3,7 @@ from decimal import Decimal
 from faker import Faker
 from app import app, db
 from models import User, Booking, Flight, Airport, FlightPassenger
+from werkzeug.security import generate_password_hash
 
 def cleanup():
     """Delete all existing data from the tables."""
@@ -37,6 +38,32 @@ if __name__ == '__main__':
         # Commit the changes to the database to ensure we have IDs available for foreign key assignment
         db.session.commit()
 
+        # Create some fake data for the User model
+        num_users = 100
+        for _ in range(num_users):
+            username = fake.name()
+            email = fake.email()
+            password = fake.password()
+            
+            # Generate phone number with exactly 10 digits
+            phone = None
+            while not phone or len(phone) != 10:
+                phone = fake.numerify(text='##########')
+
+            # Hash the password
+            hashed_password = generate_password_hash(password)
+
+            user = User(
+                username=username,
+                email=email,
+                phone=phone,
+                password=hashed_password
+            )
+            db.session.add(user)
+
+        # Commit the changes to the database to ensure we have user IDs available for foreign key assignment
+        db.session.commit()
+
         # Create some fake data for the Flight model
         num_flights = 500
         for _ in range(num_flights):
@@ -65,20 +92,6 @@ if __name__ == '__main__':
             db.session.add(flight)
 
         # Commit the changes to the database to ensure we have flight IDs available for foreign key assignment
-        db.session.commit()
-
-        # Create some fake data for the User model
-        num_users = 100
-        for _ in range(num_users):
-            user = User(
-                name=fake.name(),
-                email=fake.email(),
-                phone=fake.phone_number(),
-                password_hash=fake.password()
-            )
-            db.session.add(user)
-
-        # Commit the changes to the database to ensure we have user IDs available for foreign key assignment
         db.session.commit()
 
         # Create some fake data for the Booking model
