@@ -1,0 +1,124 @@
+/* Import Poppins font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+body {
+  background-size: cover;
+  background-position: center;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.list {
+  max-width: 35rem;
+  margin: 4rem auto 0; /* Adjust top margin, keep bottom and left/right margins automatic */
+  padding: 3.25rem;
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+.list h2 {
+  text-align: center;
+  color: #333;
+  padding-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
+
+.login {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
+}
+
+.login-image {
+  background-image: url("../img/login.png");
+  background-size: cover;
+  height: 100vh;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.4rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.4rem;
+  background-color: rgb(241, 237, 237);
+}
+
+.login-button,
+.signup-button {
+  padding: 0.5rem 1.6rem;
+  font-size: 0.8rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+.signup-btn{
+  margin-top: -15.5rem;
+}
+.login-button {
+  background-color: #194370;
+  color: #fff;
+  border: none;
+}
+
+.login-buttonn:hover,
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Parag {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: center; /* Align items horizontally */
+  margin-top: -rem; /* Adjust margin top as needed */
+}
+
+.Parag p {
+  color: black;
+  font-size: 0.9rem;
+  font-weight: 500;
+   margin-top: -14rem; 
+  margin-right: 0.5rem; /* Add margin to the right */
+ 
+}
+
+.Parag .signup-btn {
+  padding: 0.5rem 1.6rem;
+  background-color: #ff0000; /* Red color */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+
+
+@media screen and (min-width: 600px) {
+  .button-container {
+    flex-direction: row;
+  }
+
+  .Parag {
+    margin-top: 0;
+    margin-left: auto;
+  }
+}
+
+.forgot-password {
+  color: black;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  
+}
