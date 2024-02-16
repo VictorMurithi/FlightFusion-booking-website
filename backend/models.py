@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
@@ -16,6 +17,12 @@ class User(db.Model, SerializerMixin):
     password = db.Column(db.String(450), nullable=False)
     bookings = relationship("Booking", back_populates="user")
     flights = relationship("FlightPassenger", back_populates="user")
+
+    def set_password(self, password):
+        self.password = password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
 class Booking(db.Model, SerializerMixin):
     __tablename__ = 'bookings'
