@@ -18,7 +18,7 @@ const Carousel = () => {
     // Automatically advance to the next slide every 3 seconds
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 4000);
+    }, 6000);
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [slides.length]);
