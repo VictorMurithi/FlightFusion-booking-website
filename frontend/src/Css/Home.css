@@ -1,0 +1,48 @@
+/* Customize the scrollbar's width and height */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: #F94B4B;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+  }
+
+.card-container{
+    width: 946px;
+    height: 264px;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+    top: -8em;
+    z-index: 1000;
+}
+
+.grid-sec{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.pgrid img{
+    border-radius: 1em;
+    /* width: 200px; */
+    /* margin: 0em 10em; */
+}
+
+.g-img{
+    margin: 0em -1.3em;
+}
+
+figure{
+    font-weight: 500;
+    color: black;
+}
+
+.destination-txt{
+    margin-top: 3em;
+}
