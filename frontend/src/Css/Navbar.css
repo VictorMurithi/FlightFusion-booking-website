@@ -1,18 +1,23 @@
-.navbar{
-    margin: 0em 2em;
-    z-index: 1000;
-    background-color: transparent;
-    color: white;
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.navbar {
+  margin: 0em 2em;
+  z-index: 1000;
+  background-color: transparent;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
-.nav-link{
-    margin: 0em 1em;
-    color: white;
+.nav-link {
+  margin: 0em 1em;
+  color: white;
 }
 
-.App-logo{
-    height: 2em;
+.App-logo {
+  height: 2em;
 }
 
-.navli{
-    color: white;
+.navli {
+  color: white;
 }
