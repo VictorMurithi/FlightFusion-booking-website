@@ -1,0 +1,83 @@
+/* Import Poppins font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+body {
+  background-size: cover;
+  background-position: center;
+}
+
+.list {
+  max-width: 35rem;
+  margin: 0 auto;
+  padding: 3.25rem;
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  margin-top: 4rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+.list h2 {
+  text-align: center;
+  color: #333;
+  padding-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  font-family: Poppins;
+  gap: 1.7rem;
+}
+.signup-image{
+  background-image: url('../img/signup\ \(1\).png');
+  background-size: cover;
+  height: 100vh;
+
+}
+
+input {
+  padding: 0.4rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.4rem;
+  background-color: rgb(241, 237, 237);
+}
+.input-field {
+  padding-left: 1.7rem; /* Adjusted margin */
+  font-size: 0.855rem;
+}
+
+button {
+  padding: 0.17rem 1.6rem;
+  background-color: #194370;
+  color: #fff;
+  border: none;
+  border-radius: 2.5rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+
+  width: fit-content;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+.signup-button {
+  font-size: 0.855rem;
+  border-radius: 0.3rem;
+}
+@media screen and (max-width: 37.5rem) {
+  .list {
+    max-width: 18.75rem;
+  }
+
+  /* input {
+    padding: 0.5rem;
+  } */
+
+  /* button {
+    padding: 0.5rem;
+  } */
+}
