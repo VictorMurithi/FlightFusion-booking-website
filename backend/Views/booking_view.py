@@ -18,3 +18,5 @@ def get_bookings():
 
     # Serialize the bookings and return the response
     return jsonify([booking.serialize() for booking in bookings]), 200
+
+    # booking_view.py
