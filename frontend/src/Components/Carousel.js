@@ -35,7 +35,6 @@ const Carousel = () => {
               <div className='btn-holder'>
                 <button className='btns'>Book A Flight</button>
               </div>
-              
             </div>
           </div>
         ))}
