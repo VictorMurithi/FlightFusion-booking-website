@@ -71,10 +71,10 @@ if __name__ == '__main__':
         num_users = 100
         for _ in range(num_users):
             user = User(
-                name=fake.name(),
+                username=fake.name(),
                 email=fake.email(),
                 phone=fake.phone_number(),
-                password_hash=fake.password()
+                password=fake.password()
             )
             db.session.add(user)
 
