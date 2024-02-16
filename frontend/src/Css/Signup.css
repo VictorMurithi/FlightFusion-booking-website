@@ -4,6 +4,7 @@
 body {
   background-size: cover;
   background-position: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .list {
@@ -31,11 +32,10 @@ body {
   font-family: Poppins;
   gap: 1.7rem;
 }
-.signup-image{
-  background-image: url('../img/signup\ \(1\).png');
+.signup-image {
+  background-image: url("../img/signup\ \(1\).png");
   background-size: cover;
   height: 100vh;
-
 }
 
 input {
@@ -57,6 +57,7 @@ button {
   border-radius: 2.5rem;
   cursor: pointer;
   transition: background-color 0.5s ease;
+  font-family: "Poppins", sans-serif;
 
   width: fit-content;
 }
@@ -67,6 +68,8 @@ button:hover {
 .signup-button {
   font-size: 0.855rem;
   border-radius: 0.3rem;
+  font-family: 'Poppins', sans-serif;
+
 }
 @media screen and (max-width: 37.5rem) {
   .list {
