@@ -50,17 +50,13 @@ def signup():
         email = data.get("email")
         phone = data.get("phone")
         password = data.get("password")
-        confirm_password = data.get("confirm_password")
 
-        if not username or not email or not phone or not password or not confirm_password:
-            return jsonify({"msg": "Username, email, phone, password, or confirm_password is missing"}), 400
+        if not username or not email or not phone or not password:
+            return jsonify({"msg": "Username, email, phone, password"}), 400
 
         if len(phone) != 10:
             return jsonify({"msg": "Phone number must be 10 digits long"}), 400
-
-        if password != confirm_password:
-            return jsonify({"msg": "Password and confirm_password do not match"}), 400
-
+        
         # Check if user with the provided email already exists
         if User.query.filter_by(email=email).first():
             return jsonify({"msg": "User with this email already exists"}), 409
