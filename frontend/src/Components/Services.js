@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import illustration from '../img/illustration.png';
+import "../Css/Home.css";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Services = () => {

@@ -1,0 +1,11 @@
+.footer p{
+    color: white;
+    text-align: center;
+    padding-bottom: 4em;
+    margin-top: 3em;
+}
+
+hr {
+    border: 5px solid #ffffff; /* Border color and thickness */
+    margin: 20px 0; /* Margin above and below the horizontal rule */
+  }
