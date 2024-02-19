@@ -1,3 +1,8 @@
+body{
+    overflow-x: hidden;
+    height: 100vh;
+}
+
 /* Customize the scrollbar's width and height */
 ::-webkit-scrollbar {
     width: 10px;
@@ -45,4 +50,51 @@ figure{
 
 .destination-txt{
     margin-top: 3em;
+}
+
+.services{
+    margin-top: -6em;
+    color: white;
+    padding: 0em 15em;
+}
+
+.list-container{
+    /* display: flex;
+    flex-direction: column; */
+    align-items: center;
+    /* margin-left: 3em;
+    width: 3em; */
+    padding-top: 16em;
+}
+
+.list-container p{
+    width: 100%;
+}
+
+.illustration-container{
+    width: 1em;
+    padding-top: 10em;
+}
+
+.illustration-container img{
+    margin-top: 3em;
+    width: 100%;
+}
+
+.gradientbg {
+    background: url('../img/bgvector.png');
+    background-size: cover;
+    /* background-position: -50%;  */
+    /* padding: 0em 6em; */
+}
+
+.list-item-number{
+    position: relative;
+    font-weight: 400;
+    left: -1em;
+}
+
+.list-item-content p{
+    position: relative;
+    left: 1.4em;
 }
