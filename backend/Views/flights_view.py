@@ -1,20 +1,30 @@
 from models import db, Flight
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request, jsonify
+
+from models import Flight
 
 flights_bp = Blueprint("flights_bp", __name__)
 
-@flights_bp.route('/flights')
-def get_flights():
-    flights = Flight.query.all()
+
+@flights_bp.route('/flights', methods=['POST'])
+def filter_flights_by_destination():
+    data = request.json
+
+    if not data or 'destination' not in data:
+        return jsonify({"message": "Destination is required in the request body."}), 400
+
+    destination = data['destination']
+
+    # Filter flights based on the provided destination
+    flights = Flight.query.filter_by(destination=destination).all()
+
     if flights:
         flights_data = [
             {
                 "id": flight.id,
                 "airline": flight.airline,
-                "flight_class": flight.flight_class,
                 "destination": flight.destination,
-                "arrival_time": flight.arrival_time,
-                "departure_time": flight.departure_time,
+                "departure_datetime": flight.departure_datetime,
                 "price": flight.price,
                 "departure_airport_id": flight.departure_airport_id,
                 "arrival_airport_id": flight.arrival_airport_id
@@ -23,23 +33,4 @@ def get_flights():
         ]
         return jsonify(flights_data), 200
     else:
-        return jsonify({"message": "No flights found"}), 404
-
-@flights_bp.route('/flights/<int:flight_id>')
-def get_flight_details(flight_id):
-    flight = Flight.query.get(flight_id)
-    if flight:
-        flight_data = {
-            "id": flight.id,
-            "airline": flight.airline,
-            "flight_class": flight.flight_class,
-            "destination": flight.destination,
-            "arrival_time": flight.arrival_time,
-            "departure_time": flight.departure_time,
-            "price": flight.price,
-            "departure_airport_id": flight.departure_airport_id,
-            "arrival_airport_id": flight.arrival_airport_id
-        }
-        return jsonify(flight_data), 200
-    else:
-        return jsonify({"message": "Flight not found"}), 404
+        return jsonify({"message": f"No flights found for destination '{destination}'"}), 404
