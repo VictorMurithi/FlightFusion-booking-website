@@ -1,8 +1,8 @@
-"""changed column name to password
+"""initial
 
-Revision ID: 31a56e88d240
+Revision ID: 2f36d4042c38
 Revises: 
-Create Date: 2024-02-16 14:22:07.380975
+Create Date: 2024-02-19 11:29:47.753278
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '31a56e88d240'
+revision = '2f36d4042c38'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,10 +38,8 @@ def upgrade():
     op.create_table('flights',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('airline', sa.String(length=100), nullable=False),
-    sa.Column('flight_class', sa.String(length=100), nullable=False),
     sa.Column('destination', sa.String(length=100), nullable=False),
-    sa.Column('arrival_time', sa.DateTime(), nullable=False),
-    sa.Column('departure_time', sa.DateTime(), nullable=False),
+    sa.Column('departure_datetime', sa.DateTime(), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('departure_airport_id', sa.Integer(), nullable=False),
     sa.Column('arrival_airport_id', sa.Integer(), nullable=False),

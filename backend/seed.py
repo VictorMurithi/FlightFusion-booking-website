@@ -80,10 +80,8 @@ if __name__ == '__main__':
 
             flight = Flight(
                 airline=fake.company(),
-                flight_class=flight_class,
                 destination=destination_airport.city,
-                arrival_time=arrival_time,
-                departure_time=departure_datetime,
+                departure_datetime=departure_datetime,
                 price=price,
                 departure_airport=departure_airport,
                 arrival_airport=destination_airport
@@ -105,7 +103,7 @@ if __name__ == '__main__':
                 user_id=user_id,
                 flight_id=flight_id,
                 booking_datetime=booking_datetime,
-                departure_datetime=Flight.query.get(flight_id).departure_time
+                departure_datetime=Flight.query.get(flight_id).departure_datetime
             )
 
             db.session.add(booking)

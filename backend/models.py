@@ -41,10 +41,8 @@ class Flight(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     airline = db.Column(db.String(100), nullable=False)
-    flight_class = db.Column(db.String(100), nullable=False)
     destination = db.Column(db.String(100), nullable=False)
-    arrival_time = db.Column(db.DateTime, nullable=False)
-    departure_time = db.Column(db.DateTime, nullable=False)
+    departure_datetime = db.Column(db.DateTime, nullable=False)
     price = db.Column(db.Float, nullable=False)
     departure_airport_id = db.Column(db.Integer, db.ForeignKey('airports.id'), nullable=False)
     arrival_airport_id = db.Column(db.Integer, db.ForeignKey('airports.id'), nullable=False)
