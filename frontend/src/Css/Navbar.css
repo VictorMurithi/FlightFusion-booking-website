@@ -12,6 +12,12 @@
 .nav-link {
   margin: 0em 1em;
   color: white;
+  transition: all .5s ease;
+}
+.nav-link:hover{
+  transition: all .5s ease;
+  transform: translateY(-10%);
+  color: rgb(0, 0, 0);
 }
 
 .App-logo {
