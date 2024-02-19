@@ -1,5 +1,6 @@
 body{
     overflow-x: hidden;
+    height: 100vh;
 }
 
 /* Customize the scrollbar's width and height */
@@ -63,7 +64,7 @@ figure{
     align-items: center;
     /* margin-left: 3em;
     width: 3em; */
-    padding-top: 13em;
+    padding-top: 16em;
 }
 
 .list-container p{
