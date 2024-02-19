@@ -5,7 +5,7 @@ import Footer from "../Layout/Footer";
 import Carousel from "../Components/Carousel";
 import Cards from "../Components/Cards";
 import PhotoGrid from "../Components/PhotoGrid";
-
+import Services from "../Components/Services";
 
 export default function Home() {
     return (
@@ -14,7 +14,11 @@ export default function Home() {
             <Carousel />
             <Cards />
             <PhotoGrid />
-            <Footer/>
+            <div className="gradientbg">
+               <Services />
+               <Footer/> 
+            </div>
+            
         </div>
     );
 }
