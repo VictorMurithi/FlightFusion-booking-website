@@ -6,35 +6,41 @@ import "../Css/Login.css";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setError(null);
+          console.log("User logged in successfully", data);
+          alert(data.message);
+          navigate("/");
+        }
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Response data:", data.role);
-
-        navigate("/");
-      } else if (response.status === 401) {
-        const errorData = await response.json();
-        console.error("Authentication error:", errorData.error);
-        alert("User Not Found");
-      } else {
-        console.error("Unexpected error:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
   };
 
   return (
@@ -48,7 +54,7 @@ const LoginPage = () => {
               type="text"
               value={email}
               placeholder="Email:"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
               className="input-field"
             />
           </div>
@@ -57,34 +63,27 @@ const LoginPage = () => {
               type="password"
               value={password}
               placeholder="Password:"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
               className="input-field"
             />
           </div>
 
           <div className="button-container">
-            {" "}
-            {/* Container for buttons */}
             <button type="submit" className="login-button">
               Login
-            </button>{" "}
-            {/* Added login-button class */}
+            </button>
           </div>
           <div className="forgot-password">
             <p>
               <Link to="/forgotpassword">Forgot Password?</Link>
-            </p>{" "}
-            {/* Added forgot password link */}
+            </p>
           </div>
 
           <div className="Parag">
-            {" "}
-            {/* Container for "Don't have an account?" text and "Sign Up" button */}
             <p>Don't have an account? </p>
             <Link to="/signup" className="signup-btn">
               Sign Up
-            </Link>{" "}
-            {/* Added signup-button class */}
+            </Link>
           </div>
         </form>
       </div>
