@@ -4,7 +4,8 @@ import "../Css/Footer.css";
 export default function Footer() {
     return (
         <div className="footer">
-            <h1>Footer</h1>
+            <hr></hr>
+            <p>&copy; 2024 FLIGHT FUSION BOOKINGS. All rights reserved.</p>
         </div>
     );
 }
