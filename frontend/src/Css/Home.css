@@ -35,8 +35,13 @@ body{
 
 .pgrid img{
     border-radius: 1em;
+    transition: all .5s ease;
     /* width: 200px; */
     /* margin: 0em 10em; */
+}
+
+.pgrid img:hover{
+    transform: translateY(-10%);
 }
 
 .g-img{
@@ -54,8 +59,9 @@ figure{
 
 .services{
     margin-top: -6em;
+    margin-bottom: 4em;
     color: white;
-    padding: 0em 15em;
+    /* padding: 0em 15em; */
 }
 
 .list-container{
@@ -64,7 +70,7 @@ figure{
     align-items: center;
     /* margin-left: 3em;
     width: 3em; */
-    padding-top: 16em;
+    padding-top: 18em;
 }
 
 .list-container p{
@@ -73,7 +79,7 @@ figure{
 
 .illustration-container{
     width: 1em;
-    padding-top: 10em;
+    padding-top: 14em;
 }
 
 .illustration-container img{
