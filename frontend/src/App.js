@@ -10,7 +10,6 @@ import FlightBooking from './Pages/FlightBooking';
 import ResetPassword from './Pages/ResetingPassword';
 import ForgotPassword from './Pages/ForgotPassword';
 import Navbar from './Layout/Navbar';
-
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
