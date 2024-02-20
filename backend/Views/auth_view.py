@@ -1,6 +1,6 @@
 from models import db, User
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token,jwt_required
 from werkzeug.security import check_password_hash
 
 auth_bp = Blueprint("auth_bp", __name__)
@@ -79,3 +79,9 @@ def signup():
         # Log the exception for debugging purposes
         print(f"An error occurred: {str(e)}")
         return jsonify({"msg": "An error occurred while processing your request"}), 500
+
+# Logout user
+@auth_bp.route("/logout", methods=["POST"])
+@jwt_required()
+def logout():
+    return jsonify({"success": "Logged out successfully!"}), 201

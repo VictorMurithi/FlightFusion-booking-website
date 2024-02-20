@@ -19,4 +19,23 @@ def get_bookings():
     # Serialize the bookings and return the response
     return jsonify([booking.serialize() for booking in bookings]), 200
 
-    # booking_view.py
+
+    # delete_bookings
+
+@booking_bp.route('/bookings/<int:booking_id>', methods=['DELETE'])
+@jwt_required()
+def cancel_booking(booking_id):
+    user_id = get_jwt_identity()  # current user
+
+    booking = Booking.query.get(booking_id)
+
+    if booking is None:
+        return jsonify({"error": "Booking not found"}), 404
+
+    if booking.user_id != user_id:
+        return jsonify({"error": "Unauthorized"}), 403
+
+    db.session.delete(booking)
+    db.session.commit()
+
+    return jsonify({"success": "Booking canceled successfully"}), 200    

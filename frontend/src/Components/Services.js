@@ -28,9 +28,9 @@ const Services = () => {
 
           <Col xs={12} md={8} className="mb-3">
             <div className="list-item">
-              <div className="list-item-number">02</div>
+              {/* <div className="list-item-number">02</div> */}
               <div className="list-item-content">
-                <h5>Worldwide Flight</h5>
+                <h5><span className='list-item-number' >02</span>Worldwide Flight</h5>
                 <p>Book your worldwide flight instantly</p>
               </div>
             </div>
@@ -38,9 +38,9 @@ const Services = () => {
 
           <Col xs={12} md={8} className="mb-3">
             <div className="list-item">
-              <div className="list-item-number">03</div>
+              {/* <div className="list-item-number">03</div> */}
               <div className="list-item-content">
-                <h5>Trusted Booking</h5>
+                <h5><span className='list-item-number' >03</span>Trusted Booking</h5>
                 <p>Reliable bookings, instant peace of mind. Book your flight with trust.</p>
               </div>
             </div>
