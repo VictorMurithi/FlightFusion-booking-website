@@ -4,7 +4,11 @@ import "../Css/Navbar.css";
 import logo from '../img/airplanetakeoff.png';
 
 export default function Navbar({ isAuthenticated }) {
-    
+    const handleLogout = () => {
+        // Implement your logout logic here
+        // For example, clear authentication token, reset state, etc.
+    };
+
     return (
         <nav className="navbar navbar-expand-lg ">
             <div className="container-fluid">
@@ -21,6 +25,7 @@ export default function Navbar({ isAuthenticated }) {
                         {!isAuthenticated && <Link to="/signup" className="nav-link text-white">Signup</Link>}
                         {isAuthenticated && <Link to="/bookings" className="nav-link text-white">Bookings</Link>}
                         {isAuthenticated && <Link to="/profile" className="nav-link text-white">Profile</Link>}
+                        {isAuthenticated && <button className="btn btn-outline-light" onClick={handleLogout}>Logout</button>}
                     </div>
                 </div>
             </div>
