@@ -60,8 +60,9 @@ export default function Bookings() {
         {/* <button type="submit" className='BookFlight-buttonn'>Book Flight</button> */}
       </form>
       <div className="flight-results">
-        <h2>Flight Results</h2>
+        {/* <h2>Flight Results</h2> */}
         <table className="flight-table">
+        {/* <h2>Flight Results</h2> */}
           <thead>
             <tr>
                 
