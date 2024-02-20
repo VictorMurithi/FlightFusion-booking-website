@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.Bookingss {
+  /* Adjust the width as needed */
+  margin: 0 auto;
+  width: 100%;
+  /* max-width: 800px;  */
+  margin: 0 auto;
+  background-image: url("../img/signup\ \(1\).png");
+  background-size: cover;
+  height: 80vh;
+  position: relative;
+  top: -4.2em;
+  z-index: 1000;
+}
+.Bookingss h1 {
+  margin-left: 20rem;
+  margin-top: 5rem;
+  font-size: 25px;
+  font-family: Poppins;
+  font-weight: 600;
+  color: white;
+}
+.booking-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  /* justify-content: space-evenly; */
+  justify-content: space-around;
+  margin-left: -4rem;
+}
+
+.form-group {
+  /* flex: 1;  */
+  margin-left: -600px;
+  font-family: Poppins;
+}
+
+label {
+  margin-bottom: 5px;
+  color: #fff; /* Set label color */
+  margin-top: 20px;
+  font-family: Poppins;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid transparent; /* Make border transparent */
+  border-bottom: 1px solid #fff; /* Add bottom border */
+  background-color: transparent; /* Make background transparent */
+  color: #fff; /* Set text color */
+  outline: none; /* Remove input outline */
+}
+
+/* Add styles for select dropdown arrow */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 8.29L1.35 3.65a.5.5 0 0 1 .71-.71l4.65 4.65L10.65 3.65a.5.5 0 0 1 .71.71L6 8.29z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 17px;
+}
+.flight-table {
+  width: 50%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-left: 20rem;
+    margin-top: 1.5rem;  
+  /* display: flex;
+    align-items: center;
+    justify-content: center; */
+  background-color: white;
+  border-radius: 1rem;
+  font-family: Poppins;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.226);
+  position: relative;
+  top: 7em;
+}
+
+.flight-results{
+  min-height: 70vh;
+}
+
+.flight-results h2 {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;  */
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 25px;
+    
+     margin-bottom: 4em;
+     text-align: center;
+     padding-top: 4rem;
+    color: #131313;
+    min-height: 40vh;
+  }
+
+.flight-table th {
+  background-color: none;
+  padding: 10px 4em; /* Adjust padding as needed */
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid black;
+  text-align: left;
+}
+
+/* Optionally, you can remove padding from the last th element */
+.flight-table th:last-child {
+  padding-right: 0;
+}
+
+.flight-table td {
+  /* border: 1px solid #ddd; */
+  margin-top: 10rem;
+  padding: 10px 4em;
+  margin-right: 40px;
+  font-family: Poppins;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.book-button {
+  /* padding: 0.7rem 9.6rem; */
+  background-color: #ff0000; /* Red color */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  /* font-size: 0.8rem; */
+  text-decoration: none;
+  font-size: 0.855rem;
+  font-family: Poppins;
+  padding: 0.3rem 1.2rem;
+}
+
+.form-group input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    font-family: Poppins;
+    
+    /* Additional styling */
+    /* Add your custom styles here */
+  }
+  .custom-select {
+    width: 100%;
+    padding: 8px;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    outline: none;
+    font-family: Poppins;
+    /* Additional styling */
+    /* Add your custom styles here */
+  }
+  .custom-select option {
+    
+    background-color: #333; /* Background color for options */
+    color: #fff; /* Text color for options */
+  }
+  
+  
