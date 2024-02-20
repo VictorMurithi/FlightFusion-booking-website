@@ -1,9 +1,10 @@
-from datetime import datetime, timedelta
-from decimal import Decimal
-from faker import Faker
+import requests
 from app import app, db
 from models import User, Booking, Flight, Airport, FlightPassenger
 from werkzeug.security import generate_password_hash
+from datetime import datetime, timedelta
+from decimal import Decimal
+from faker import Faker
 
 def cleanup():
     """Delete all existing data from the tables."""
@@ -14,26 +15,39 @@ def cleanup():
     db.session.query(FlightPassenger).delete()
     db.session.commit()
 
+def get_airports():
+    """Fetch real airport data from OpenFlights dataset."""
+    response = requests.get("https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat")
+    airports = response.text.split("\n")
+    airport_data = []
+    for airport in airports:
+        data = airport.split(",")
+        if len(data) >= 4:
+            airport_name = data[1].strip('"')
+            airport_city = data[2].strip('"')
+            airport_country = data[3].strip('"')
+            airport_data.append((airport_name, airport_city, airport_country))
+    return airport_data
+
 if __name__ == '__main__':
     with app.app_context():
         print("Cleaning up existing data...")
         cleanup()
-        print("Starting seed with fake airport and flight data...")
+        print("Starting seed with real airport and flight data...")
 
         fake = Faker()
 
-        # Create some fake data for the Airport model
-        airport_data = []
-        for _ in range(50):
-            airport_name = fake.city() + " Airport"  # Append "Airport" to city name
-            airport_country = fake.country()
+        # Get real airport data
+        airport_data = get_airports()
+
+        # Create Airport objects
+        for airport_name, airport_city, airport_country in airport_data:
             airport = Airport(
                 name=airport_name,
-                city=fake.city(),
+                city=airport_city,
                 country=airport_country
             )
             db.session.add(airport)
-            airport_data.append(airport)
 
         # Commit the changes to the database to ensure we have IDs available for foreign key assignment
         db.session.commit()
@@ -44,11 +58,7 @@ if __name__ == '__main__':
             username = fake.name()
             email = fake.email()
             password = fake.password()
-            
-            # Generate phone number with exactly 10 digits
-            phone = None
-            while not phone or len(phone) != 10:
-                phone = fake.numerify(text='##########')
+            phone = fake.phone_number()
 
             # Hash the password
             hashed_password = generate_password_hash(password)
@@ -67,14 +77,13 @@ if __name__ == '__main__':
         # Create some fake data for the Flight model
         num_flights = 500
         for _ in range(num_flights):
+            departure_airport = Airport.query.order_by(db.func.random()).first()
+            destination_airport = Airport.query.order_by(db.func.random()).first()
             flight_date = fake.date_between(start_date='-1y', end_date='today')
             departure_time = fake.time_object()
             departure_datetime = datetime.combine(flight_date, departure_time)
             arrival_time = departure_datetime + timedelta(hours=fake.random_int(min=1, max=12))
             price = Decimal(fake.random_int(min=100, max=10000))  # Ensuring at least 3 digits
-
-            departure_airport = airport_data[fake.random_int(min=0, max=len(airport_data) - 1)]
-            destination_airport = airport_data[fake.random_int(min=0, max=len(airport_data) - 1)]
 
             flight_class = fake.random_element(elements=('first class', 'business class', 'economy class'))
 
@@ -108,6 +117,9 @@ if __name__ == '__main__':
 
             db.session.add(booking)
 
+        # Commit the changes to the database
+        db.session.commit()
+
         # Create some fake data for the FlightPassenger model
         num_passengers = 5000
         for _ in range(num_passengers):
@@ -126,7 +138,7 @@ if __name__ == '__main__':
         # Commit all changes to the database
         db.session.commit()
 
-        print(f"Seeded {len(airport_data)} fake airports.")
+        print(f"Seeded {len(airport_data)} real airports.")
         print(f"Seeded {num_flights} fake flights.")
         print(f"Seeded {num_users} fake users.")
         print(f"Seeded {num_bookings} fake bookings.")
