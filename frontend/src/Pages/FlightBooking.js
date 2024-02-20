@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import react from "react";
-import '../Css/FlightBooking.css';
-
-export default function FlightBooking() {
-    return (
-        <div>
-            <h1>Flight Booking Page</h1>
-=======
 import React, { useState } from "react";
 import "../Css/FlightBooking.css";
 import Navbar from "../Layout/Navbar";
@@ -65,7 +56,6 @@ export default function Bookings() {
 
             />
           </div>
->>>>>>> 4cbb089 (Implemented flightbooking and it's styling)
         </div>
         {/* <button type="submit" className='BookFlight-buttonn'>Book Flight</button> */}
       </form>
