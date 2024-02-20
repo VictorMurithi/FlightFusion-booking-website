@@ -3,7 +3,7 @@ import Navbar from "../Layout/Navbar";
 import "../Css/Signup.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function Signup({ setIsAuthenticated }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -65,6 +65,7 @@ export default function Signup() {
           setError(null);
           console.log("User registered successfully:", data);
           alert(data.message);
+          setIsAuthenticated(true);
           navigate("/");
         }
       })
@@ -76,7 +77,7 @@ export default function Signup() {
 
   return (
     <div className="signup-image">
-      <Navbar />
+      <Navbar isAuthenticated={false}/>
       <div className="list">
         <h2>SignUp</h2>
         <form onSubmit={handleSubmit} className="signup">
