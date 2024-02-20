@@ -15,7 +15,11 @@ body{
 }
 ::-webkit-scrollbar-track {
     background: var(--secondary-color);
-  }
+}
+
+/* .homep{
+    overflow-y: scroll;
+} */
 
 .card-container{
     width: 946px;

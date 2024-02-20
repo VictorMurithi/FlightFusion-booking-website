@@ -8,7 +8,7 @@ import Services from "../Components/Services";
 
 export default function Home() {
     return (
-        <div>
+        <div className="homep">
             <Carousel />
             <Cards />
             <PhotoGrid />
