@@ -47,7 +47,7 @@ const LoginPage = ({ setIsAuthenticated }) => {
   return (
     <div className="login-image">
       <Navbar isAuthenticated={false}/>
-      <div className="list">
+      <div className="list2">
         <h2>Login</h2>
         <form onSubmit={handleLogin} className="login">
           <div>

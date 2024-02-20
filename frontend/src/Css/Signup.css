@@ -5,15 +5,16 @@ body {
   background-size: cover;
   background-position: center;
   font-family: 'Poppins', sans-serif;
+  /* overflow-y: hidden; */
 }
 
 .list {
   max-width: 35rem;
-  margin: 0 auto;
+  margin: auto;
   padding: 3.25rem;
   background-color: #ffffff;
   border-radius: 1.5rem;
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 }
 
@@ -36,6 +37,10 @@ body {
   background-image: url("../img/signup\ \(1\).png");
   background-size: cover;
   height: 100vh;
+  position: relative;
+  top: -4.2em;
+  z-index: 1000;
+  overflow: hidden;
 }
 
 input {

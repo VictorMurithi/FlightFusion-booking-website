@@ -5,18 +5,21 @@ body {
   background-size: cover;
   background-position: center;
   font-family: "Poppins", sans-serif;
+  /* height: 100vh; */
+  /* overflow-y: hidden; */
 }
 
-.list {
+.list2 {
   max-width: 35rem;
-  margin: 4rem auto 0; /* Adjust top margin, keep bottom and left/right margins automatic */
+  margin:5em auto;
   padding: 3.25rem;
   background-color: #ffffff;
   border-radius: 1.5rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  height: 100%;
 }
 
-.list h2 {
+.list2 h2 {
   text-align: center;
   color: #333;
   padding-bottom: 1rem;
@@ -35,7 +38,12 @@ body {
 .login-image {
   background-image: url("../img/login.png");
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
+  top: -4.2em;
+  z-index: 1000;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 .input-field {
