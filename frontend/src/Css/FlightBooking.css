@@ -8,7 +8,10 @@
   margin: 0 auto;
   background-image: url("../img/signup\ \(1\).png");
   background-size: cover;
-  height: 100vh;
+  height: 80vh;
+  position: relative;
+  top: -4.2em;
+  z-index: 1000;
 }
 .Bookingss h1 {
   margin-left: 20rem;
@@ -16,6 +19,7 @@
   font-size: 25px;
   font-family: Poppins;
   font-weight: 600;
+  color: white;
 }
 .booking-form {
   display: flex;
@@ -75,26 +79,39 @@ select {
   background-color: white;
   border-radius: 1rem;
   font-family: Poppins;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.226);
+  position: relative;
+  top: 7em;
 }
+
+.flight-results{
+  min-height: 70vh;
+}
+
 .flight-results h2 {
-     /* display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;  */
     font-family: Poppins;
     font-weight: 600;
     font-size: 25px;
-     margin-top: 4rem;
-     margin-left: 35rem; 
-  
+    
+     margin-bottom: 4em;
+     text-align: center;
+     padding-top: 4rem;
+    color: #131313;
+    min-height: 40vh;
   }
 
 .flight-table th {
   background-color: none;
-  padding: 10px 20px; /* Adjust padding as needed */
+  padding: 10px 4em; /* Adjust padding as needed */
   font-family: Poppins;
   font-size: 14px;
   font-weight: 500;
   border-bottom: 1px solid black;
+  text-align: left;
 }
 
 /* Optionally, you can remove padding from the last th element */
@@ -105,7 +122,7 @@ select {
 .flight-table td {
   /* border: 1px solid #ddd; */
   margin-top: 10rem;
-  padding: 10px;
+  padding: 10px 4em;
   margin-right: 40px;
   font-family: Poppins;
   font-size: 14px;
