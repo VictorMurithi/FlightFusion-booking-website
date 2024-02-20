@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../Layout/Navbar";
 import "../Css/Login.css";
 
-const LoginPage = () => {
+const LoginPage = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -38,6 +38,7 @@ const LoginPage = () => {
           setError(null);
           console.log("User logged in successfully", data);
           alert(data.message);
+          setIsAuthenticated(true);
           navigate("/");
         }
       });
@@ -45,7 +46,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-image">
-      <Navbar />
+      <Navbar isAuthenticated={false}/>
       <div className="list">
         <h2>Login</h2>
         <form onSubmit={handleLogin} className="login">
