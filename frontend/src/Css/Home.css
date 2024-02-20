@@ -70,7 +70,11 @@ figure{
     align-items: center;
     /* margin-left: 3em;
     width: 3em; */
-    padding-top: 18em;
+    padding-top: 20em;
+}
+
+.list-item-content{
+    margin-bottom: 2em;
 }
 
 .list-container p{
