@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../Css/Navbar.css";
 import logo from '../img/airplanetakeoff.png';
 
 export default function Navbar({ isAuthenticated }) {
+    const navigate = useNavigate();
     const handleLogout = () => {
         console.log("Logout clicked");
         localStorage.removeItem("token");
         window.location.reload();
+        navigate("/login");
     };
 
     return (
