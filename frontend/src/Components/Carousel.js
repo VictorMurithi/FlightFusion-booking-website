@@ -6,8 +6,10 @@ import img3 from '../img/Slide3.png';
 import "../Css/Carousel.css";
 
 const Carousel = () => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [message, setMessage] = useState("");
 
   // Define your slides as an array of objects with image and text properties
   const slides = [
@@ -16,6 +18,17 @@ const Carousel = () => {
     { image: img3, text: 'FLIGHT FUSION BOOKINGS', text2: 'Discover the world with convenience.', text3: 'Book a flight with us today' },
   ];
 
+  const token = localStorage.getItem('token');
+  console.log(token);
+  
+  useEffect(() => {
+    if (token) {
+      setIsAuthenticated(true);
+    }else{
+      setIsAuthenticated(false);
+    }
+  }, [token]);
+
   useEffect(() => {
     // Automatically advance to the next slide every 6 seconds
     const interval = setInterval(() => {
@@ -23,10 +36,15 @@ const Carousel = () => {
     }, 6000);
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, [slides.length]);
+  }, []);
 
   const handleBookFlightClick = () => {
-    navigate('/Flightbooking'); // Navigate to '/flightbooking' route
+    if (!isAuthenticated) {
+      setMessage('Please login to book a flight');
+      navigate('/login');
+    } else {
+      navigate('/Flightbooking');
+    }
   };
 
   return (
@@ -35,7 +53,7 @@ const Carousel = () => {
         {slides.map((slide, index) => (
           <div key={index} className="slide" style={{ backgroundImage: `url(${slide.image})` }}>
             <div className="overlay">
-              <p className="slide-text ">{slide.text}</p>
+              <p className="slide-text">{slide.text}</p>
               <p className="slide-text txt2">{slide.text2}</p>
               <p className="slide-text txt2">{slide.text3}</p>
               <div className='btn-holder'>
@@ -45,6 +63,7 @@ const Carousel = () => {
           </div>
         ))}
       </div>
+      {message && <p>{message}</p>}
     </div>
   );
 };
