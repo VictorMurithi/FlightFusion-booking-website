@@ -43,7 +43,7 @@ const Carousel = () => {
       setMessage('Please login to book a flight');
       navigate('/login');
     } else {
-      navigate('/Flightbooking');
+      navigate('/flightbooking');
     }
   };
 
