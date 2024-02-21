@@ -9,7 +9,6 @@ const Carousel = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [message, setMessage] = useState("");
 
   // Define your slides as an array of objects with image and text properties
   const slides = [
@@ -40,8 +39,7 @@ const Carousel = () => {
 
   const handleBookFlightClick = () => {
     if (!isAuthenticated) {
-      setMessage('Please login to book a flight');
-      navigate('/login');
+      alert('Please login to book a flight');
     } else {
       navigate('/flightbooking');
     }
@@ -63,7 +61,6 @@ const Carousel = () => {
           </div>
         ))}
       </div>
-      {message && <p>{message}</p>}
     </div>
   );
 };
