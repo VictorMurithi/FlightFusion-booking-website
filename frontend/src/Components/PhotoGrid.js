@@ -13,11 +13,11 @@ const PhotoGrid = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Define isAuthenticated state
   const destinations = [
-    { name: 'Japan', img: img1 },
-    { name: 'Mexico', img: img2 },
-    { name: 'France', img: img3 },
-    { name: 'England', img: img4 },
-    { name: 'Bali', img: img5 },
+    { name: 'Tokyo', img: img1 },
+    { name: 'Paris', img: img2 },
+    { name: 'Venice', img: img3 },
+    { name: 'Amsterdam', img: img4 },
+    { name: 'Dubai', img: img5 },
     { name: 'Turkey', img: img6 }
   ];
 
