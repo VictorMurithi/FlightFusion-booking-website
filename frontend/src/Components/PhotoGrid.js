@@ -15,9 +15,9 @@ const PhotoGrid = () => {
   const destinations = [
     { name: 'Tokyo', img: img1 },
     { name: 'Paris', img: img2 },
-    { name: 'Venice', img: img3 },
+    { name: 'Vienna', img: img3 },
     { name: 'Amsterdam', img: img4 },
-    { name: 'Dubai', img: img5 },
+    { name: 'Mombasa', img: img5 },
     { name: 'Turkey', img: img6 }
   ];
 
