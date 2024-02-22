@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../Css/Navbar.css";
 import logo from '../img/airplanetakeoff.png';
 
 export default function Navbar({ isAuthenticated }) {
+    const navigate = useNavigate();
     const handleLogout = () => {
-        // Implement your logout logic here
-        // For example, clear authentication token, reset state, etc.
+        console.log("Logout clicked");
+        localStorage.removeItem("token");
+        window.location.reload();
     };
 
     return (
@@ -25,7 +28,7 @@ export default function Navbar({ isAuthenticated }) {
                         {!isAuthenticated && <Link to="/signup" className="nav-link text-white">Signup</Link>}
                         {isAuthenticated && <Link to="/bookings" className="nav-link text-white">Bookings</Link>}
                         {isAuthenticated && <Link to="/profile" className="nav-link text-white">Profile</Link>}
-                        {isAuthenticated && <button className="btn btn-outline-light" onClick={handleLogout}>Logout</button>}
+                        {isAuthenticated && <button className="btn btn-outline-light btn btn-danger" onClick={handleLogout}>Logout</button>}
                     </div>
                 </div>
             </div>
