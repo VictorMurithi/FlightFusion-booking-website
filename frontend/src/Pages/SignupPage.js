@@ -65,6 +65,10 @@ export default function Signup({ setIsAuthenticated }) {
           setError(null);
           console.log("User registered successfully:", data);
           alert(data.message);
+
+          // Store token in localStorage
+          localStorage.setItem('token', data.access_token);
+          
           setIsAuthenticated(true);
           navigate("/");
         }
