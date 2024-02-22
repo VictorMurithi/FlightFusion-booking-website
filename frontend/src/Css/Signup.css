@@ -5,7 +5,6 @@ body {
   background-size: cover;
   background-position: center;
   font-family: 'Poppins', sans-serif;
-  /* overflow-y: hidden; */
 }
 
 .list {
@@ -14,7 +13,6 @@ body {
   padding: 3.25rem;
   background-color: #ffffff;
   border-radius: 1.5rem;
-  /* margin-top: 4rem; */
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 }
 
@@ -47,11 +45,13 @@ input {
   padding: 0.4rem;
   border: 0.0625rem solid #ccc;
   border-radius: 0.4rem;
-  background-color: rgb(241, 237, 237);
+  background-color: rgb(19, 18, 18);
+  color: #000; /* Change text color to black */
 }
 .input-field {
   padding-left: 1.7rem; /* Adjusted margin */
   font-size: 0.855rem;
+  color: #000; /* Ensuring input text color is black */
 }
 
 button {
@@ -63,7 +63,6 @@ button {
   cursor: pointer;
   transition: background-color 0.5s ease;
   font-family: "Poppins", sans-serif;
-
   width: fit-content;
 }
 
@@ -74,18 +73,10 @@ button:hover {
   font-size: 0.855rem;
   border-radius: 0.3rem;
   font-family: 'Poppins', sans-serif;
-
 }
+
 @media screen and (max-width: 37.5rem) {
   .list {
     max-width: 18.75rem;
   }
-
-  /* input {
-    padding: 0.5rem;
-  } */
-
-  /* button {
-    padding: 0.5rem;
-  } */
 }
