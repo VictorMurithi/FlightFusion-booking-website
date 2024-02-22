@@ -52,6 +52,7 @@ body {
   border: 0.0625rem solid #ccc;
   border-radius: 0.4rem;
   background-color: rgb(241, 237, 237);
+  color: black; /* Change text color to black */
 }
 
 .login-button,
