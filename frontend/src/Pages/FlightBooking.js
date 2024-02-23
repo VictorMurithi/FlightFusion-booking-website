@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Css/FlightBooking.css";
 import Navbar from "../Layout/Navbar";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Bookings() {
   const [form, setForm] = useState({
-    airport: "",
     destination: "",
-    flightDate: "",
-    departureTime: "",
-    tripType: "",
   });
+  const [flights, setFlights] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const destination = params.get("destination");
+    if (destination) {
+      setForm({ destination });
+      fetchFlights(destination);
+    }
+  }, [location.search]);
 
   const handleChange = (e) => {
     setForm({
@@ -18,11 +27,32 @@ export default function Bookings() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
-    // Here you would typically send the form data to your server
+    fetchFlights(form.destination);
   };
+
+  const fetchFlights = async (destination) => {
+    try {
+      const response = await fetch("/flights", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ destination }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to fetch flights");
+      }
+      const data = await response.json();
+      console.log("Flight data:", data); // Log flight data to console
+      setFlights(data);
+    } catch (error) {
+      console.error("Error fetching flights:", error.message);
+    }
+  };
+  
+  
 
   return (
     <div className="Bookingss">
@@ -30,93 +60,53 @@ export default function Bookings() {
       <h1>Book a flight with us</h1>
       <form onSubmit={handleSubmit} className="booking-form">
         <div className="form-row">
-          <div className="form-group-">
+          <div className="form-group">
             <label htmlFor="destination">Destination</label>
-            <select
+            <input
+              type="text"
               name="destination"
               value={form.destination}
               onChange={handleChange}
-              className="custom-select" // Apply custom CSS class
-
-            >
-              <option value="">Select Destination</option>
-              <option value="London">London</option>
-              <option value="Paris">Paris</option>
-              <option value="New York">New York</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="flightDate">Flight Date</label>
-            <input
-              type="date"
-              name="flightDate"
-              value={form.flightDate}
-              onChange={handleChange}
-              className="custom-date-input" // Apply custom CSS class
-
+              className="custom-input"
             />
           </div>
         </div>
-        {/* <button type="submit" className='BookFlight-buttonn'>Book Flight</button> */}
+        <button type="submit" className="BookFlight-buttonn">
+          Search Flights
+        </button>
       </form>
       <div className="flight-results">
-        {/* <h2>Flight Results</h2> */}
+        <h2>Flight Results</h2>
         <table className="flight-table">
-        {/* <h2>Flight Results</h2> */}
           <thead>
             <tr>
-                
               <th>Airline</th>
-              <th>Flight Date</th>
-              <th>Departure Time</th>
-              <th>Arrival Time</th>
+              <th>Destination</th>
+              <th>Departure Date</th>
               <th>Price</th>
               <th>Action</th>
             </tr>
-
           </thead>
           <tbody>
-            <tr>
-              <td>Spirit</td>
-              <td>11/11/2024</td>
-              <td>4:20 AM</td>
-              <td>4:20 PM</td>
-              <td>$200</td>
-              <td>
-                <button className="book-button">Book</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Delta</td>
-              <td>11/12/2024</td>
-              <td>6:00 AM</td>
-              <td>8:30 PM</td>
-              <td>$250</td>
-              <td>
-                <button className="book-button">Book</button>
-              </td>
-            </tr>
-            <tr>
-              <td>United</td>
-              <td>11/13/2024</td>
-              <td>9:00 AM</td>
-              <td>11:30 PM</td>
-              <td>$280</td>
-              <td>
-                <button className="book-button">Book</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Spirit</td>
-              <td>11/11/2024</td>
-              <td>4:20 AM</td>
-              <td>4:20 PM</td>
-              <td>$200</td>
-              <td>
-                <button className="book-button">Book</button>
-              </td>
-            </tr>
-          </tbody>
+  {flights.length > 0 ? (
+    flights.map((flight) => (
+      <tr key={flight.id}>
+        <td>{flight.airline}</td>
+        <td>{flight.destination}</td>
+        <td>{flight.departure_datetime}</td>
+        <td>${flight.price}</td>
+        <td>
+          <button className="book-button">Book</button>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="5">No flights available</td>
+    </tr>
+  )}
+</tbody>
+
         </table>
       </div>
     </div>

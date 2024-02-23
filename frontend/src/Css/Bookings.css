@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.Bookingsss {
+  /* Adjust the width as needed */
+  margin: 0 auto;
+  width: 100%;
+  /* max-width: 800px;  */
+  margin: 0 auto;
+  background-image: url("../img/Currentbookings.png");
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  top: -4.2em;
+  z-index: 1000;
+}
+.Bookingsss h1{
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  font-size: 25px;
+  font-family: Poppins;
+  font-weight: 600;
+  color: white;
+
+}
+
+.flight-tableee {
+  width: 50%;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-left: 20rem;
+  /* margin-top: 1.5rem;   */
+  /* display: flex;
+    align-items: center;
+    justify-content: center; */
+  background-color: rgb(250, 250, 250);
+  border-radius: 1rem;
+  font-family: Poppins;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.226);
+  position: relative;
+  top: 2em; 
+}
+
+.flight-resultsss {
+  min-height: 70vh;
+}
+
+.flight-tableee th {
+  background-color: none;
+  padding: 10px 4em; /* Adjust padding as needed */
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid black;
+  text-align: left;
+}
+
+.flight-tableee td {
+  /* border: 1px solid #ddd; */
+  margin-top: 10rem;
+  padding: 10px 4em;
+  margin-right: 40px;
+  font-family: Poppins;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.remove-button {
+  /* padding: 0.7rem 9.6rem; */
+  background-color: #ff0000; /* Red color */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  /* font-size: 0.8rem; */
+  text-decoration: none;
+  font-size: 0.855rem;
+  font-family: Poppins;
+  padding: 0.3rem 1.2rem;
+}
