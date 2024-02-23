@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Css/FlightBooking.css";
 import Navbar from "../Layout/Navbar";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Bookings() {
   const [form, setForm] = useState({
     destination: "",
   });
   const [flights, setFlights] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const destination = params.get("destination");
+    if (destination) {
+      setForm({ destination });
+      fetchFlights(destination);
+    }
+  }, [location.search]);
 
   const handleChange = (e) => {
     setForm({
@@ -17,23 +29,30 @@ export default function Bookings() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    fetchFlights(form.destination);
+  };
+
+  const fetchFlights = async (destination) => {
     try {
       const response = await fetch("/flights", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ destination }),
       });
       if (!response.ok) {
         throw new Error("Failed to fetch flights");
       }
       const data = await response.json();
+      console.log("Flight data:", data); // Log flight data to console
       setFlights(data);
     } catch (error) {
       console.error("Error fetching flights:", error.message);
     }
   };
+  
+  
 
   return (
     <div className="Bookingss">
@@ -62,25 +81,32 @@ export default function Bookings() {
           <thead>
             <tr>
               <th>Airline</th>
-              <th>Destinaton</th>
+              <th>Destination</th>
               <th>Departure Date</th>
               <th>Price</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {flights.map((flight) => (
-              <tr key={flight.id}>
-                <td>{flight.airline}</td>
-                <td>{flight.destination}</td>
-                <td>{flight.departure_datetime}</td>
-                <td>${flight.price}</td>
-                <td>
-                  <button className="book-button">Book</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+  {flights.length > 0 ? (
+    flights.map((flight) => (
+      <tr key={flight.id}>
+        <td>{flight.airline}</td>
+        <td>{flight.destination}</td>
+        <td>{flight.departure_datetime}</td>
+        <td>${flight.price}</td>
+        <td>
+          <button className="book-button">Book</button>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="5">No flights available</td>
+    </tr>
+  )}
+</tbody>
+
         </table>
       </div>
     </div>
