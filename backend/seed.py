@@ -30,16 +30,25 @@ def get_airports():
             airport_data.append((airport_name, airport_city, airport_country))
     return airport_data
 
+from datetime import datetime, timedelta
+
 def seed_flights(destination, num_flights, faker):
     """Seed fake flights for a given destination."""
     airport_objects = Airport.query.all()
     for _ in range(num_flights):
         departure_airport = random.choice(airport_objects)
         arrival_airport = random.choice(airport_objects)
+        
+        # Generate a random flight date without time (only year, month, and day)
         flight_date = faker.date_between(start_date='-1y', end_date='today')
-        departure_time = faker.time_object()
-        departure_datetime = datetime.combine(flight_date, departure_time)
+        
+        # Set departure_datetime to the beginning of the day (00:00:00)
+        departure_datetime = datetime.combine(flight_date, datetime.min.time())
+        
+        # Generate arrival time by adding random hours to departure datetime
         arrival_time = departure_datetime + timedelta(hours=random.randint(1, 12))
+        
+        # Generate price
         price = Decimal(faker.random_int(min=100, max=10000))  # Ensuring at least 3 digits
 
         flight_class = faker.random_element(elements=('first class', 'business class', 'economy class'))
@@ -54,6 +63,7 @@ def seed_flights(destination, num_flights, faker):
         )
 
         db.session.add(flight)
+
 
 def seed_users(num_users, faker):
     """Seed fake users."""
