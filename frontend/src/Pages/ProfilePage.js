@@ -1,11 +1,7 @@
-import react from "react";
-import '../Css/Profile.css';
+import React from 'react'
 
-
-export default function Profile() {
-    return (
-        <div>
-            <h1>Profile Page</h1>
-        </div>
-    );
+export default function ProfilePage() {
+  return (
+    <div>ProfilePage</div>
+  )
 }

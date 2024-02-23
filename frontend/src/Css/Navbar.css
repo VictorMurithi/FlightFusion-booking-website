@@ -27,3 +27,21 @@
 .navli {
   color: white;
 }
+/* styles.css */
+.btn.btn-outline-light.btn-sm {
+  /* Button styles */
+  font-size: 15px;
+  padding: 2px 8px;
+  font-family: Poppins;
+  font-weight: 500;
+  border-radius: 10px;
+  /* Add any other styles you want to apply */
+
+  /* Hover effect */
+  transition: background-color 0.7s ease;
+}
+
+.btn.btn-outline-light.btn-sm:hover {
+  background-color: #F94B4B; /* Change to desired hover color */
+  
+}

@@ -28,7 +28,7 @@ export default function Navbar({ isAuthenticated }) {
                         {!isAuthenticated && <Link to="/signup" className="nav-link text-white">Signup</Link>}
                         {isAuthenticated && <Link to="/bookings" className="nav-link text-white">Bookings</Link>}
                         {isAuthenticated && <Link to="/profile" className="nav-link text-white">Profile</Link>}
-                        {isAuthenticated && <button className="btn btn-outline-light btn btn-danger" onClick={handleLogout}>Logout</button>}
+{isAuthenticated && <button className="btn btn-outline-light btn  btn-sm" onClick={handleLogout}>Logout</button>}
                     </div>
                 </div>
             </div>
