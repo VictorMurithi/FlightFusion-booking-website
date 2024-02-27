@@ -66,3 +66,4 @@ def flights_to_destination(destination):
         'flights': flights_data,
         'airlines': list(airlines)
     }), 200
+

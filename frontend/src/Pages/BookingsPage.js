@@ -55,29 +55,26 @@ const Bookings = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Airline</th>
               <th>Flight Date</th>
               <th>Departure Time</th>
-              <th>Arrival Time</th>
               <th>Price</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {bookings.map(booking => (
-              <tr key={booking.id}>
-                <td>{booking.id}</td>
-                <td>{booking.airline}</td>
-                <td>{booking.flightDate}</td>
-                <td>{booking.departureTime}</td>
-                <td>{booking.arrivalTime}</td>
-                <td>{booking.price}</td>
-                <td>
-                  <button className="remove-button" onClick={() => cancelBooking(booking.id)}>Remove</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+            <tr key={booking.id}>
+            <td>{booking.id}</td>
+            <td>{booking.flight_date}</td> {/* Use flight_date instead of flightDate */}
+            <td>{booking.departure_datetime}</td> {/* Use departure_datetime instead of departureTime */}
+            <td>{booking.price}</td>
+            <td>
+        <button className="remove-button" onClick={() => cancelBooking(booking.id)}>Remove</button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
         </table>
       </div>
     </div>
