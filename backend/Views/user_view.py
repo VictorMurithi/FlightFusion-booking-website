@@ -85,6 +85,6 @@ def update_user_details():
         user.phone = phone
 
     # Update the user
-    user.name = username
+    user.username = username
     db.session.commit()
     return jsonify({"success": "User updated successfully"}), 200
