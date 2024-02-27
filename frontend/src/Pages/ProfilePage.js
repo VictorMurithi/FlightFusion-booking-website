@@ -70,8 +70,10 @@ export default function Profile() {
       if (response.ok) {
         setUserData({ ...editedData });
         setIsEditing(false);
+        alert("Profile updated successfully");
         console.log("Profile updated successfully");
       } else {
+        alert("Failed to update profile");
         console.error("Failed to update profile");
       }
     } catch (error) {
@@ -96,6 +98,7 @@ export default function Profile() {
         }
       });
       if (response.ok) {
+        alert("Profile deleted successfully");
         console.log("Profile deleted successfully");
         // Perform logout here
       } else {
