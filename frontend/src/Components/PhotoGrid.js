@@ -31,6 +31,26 @@ const PhotoGrid = () => {
     }
   }, [token]);
 
+  const handleDestinationClick = async (destination) => {
+    try {
+      const response = await fetch('/flights', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ destination }),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch flights');
+      }
+      const data = await response.json();
+      // Handle the flight data, e.g., navigate to a flight page or display the flights
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching flights:', error.message);
+    }
+  };
+
   return (
     <Container className='grid-sec'>
       <Row className="my-4 col-md-6">
@@ -45,7 +65,7 @@ const PhotoGrid = () => {
           {destinations.map(destination => (
             <Col key={destination.name} xs={12} md={4} className="mb-1">
               {isAuthenticated ? (
-                <Link to={`/Flightbooking`} className="destination-link">
+                <Link to={`FlightBooking?destination=${destination.name}`} className="destination-link" onClick={() => handleDestinationClick(destination.name)}>
                   <Figure>
                     <Figure.Image src={destination.img} alt={destination.name} className="img-fluid" />
                     <Figure.Caption className="text-center">{destination.name}</Figure.Caption>
