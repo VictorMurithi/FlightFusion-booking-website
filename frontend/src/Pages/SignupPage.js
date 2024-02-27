@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../Layout/Navbar";
 import "../Css/Signup.css";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 export default function Signup({ setIsAuthenticated }) {
   const [username, setUsername] = useState("");
@@ -64,9 +65,14 @@ export default function Signup({ setIsAuthenticated }) {
         } else {
           setError(null);
           console.log("User registered successfully:", data);
-          alert(data.message);
-          setIsAuthenticated(true);
-          navigate("/");
+          swal({
+            title: "Success!",
+            text: data.message,
+            icon: "success",
+            button: "OK",
+          }).then(() => {
+            navigate("/login"); // Redirect to the login page
+          });
         }
       })
       .catch((err) => {
