@@ -3,6 +3,13 @@ import "../Css/Profile.css";
 
 export default function Profile() {
   const [image, setImage] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [userData, setUserData] = useState({
+    userName: "John",
+    email: "johndoe@gmail.com",
+    phoneNumber: "0712345678"
+  });
+  const [editedData, setEditedData] = useState({});
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -19,6 +26,24 @@ export default function Profile() {
 
   const handleRemovePhoto = () => {
     setImage(null);
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    setEditedData({ ...userData });
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    // You can add logic here to save the edited data to the backend
+    setUserData({ ...editedData });
+  };
+
+  const handleInputChange = (e, field) => {
+    setEditedData({
+      ...editedData,
+      [field]: e.target.value
+    });
   };
 
   return (
@@ -48,26 +73,51 @@ export default function Profile() {
                 className="button-profile"
                 onChange={handleImageChange}
                 accept="image/*"
-                
               />
             </div>
           </div>
           <div className="profile-details">
             <div className="detail">
               <label>User Name:</label>
-              <span>John </span>
-              {/* Add your edit icon here */}
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={editedData.userName}
+                  onChange={(e) => handleInputChange(e, "userName")}
+                />
+              ) : (
+                <span>{userData.userName}</span>
+              )}
             </div>
             <div className="detail">
               <label>Email:</label>
-              <span>johndoe@gmail.com</span>
-              {/* Add your edit icon here */}
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={editedData.email}
+                  onChange={(e) => handleInputChange(e, "email")}
+                />
+              ) : (
+                <span>{userData.email}</span>
+              )}
             </div>
             <div className="detail">
               <label>Phone Number:</label>
-              <span>0712345678</span>
-              {/* Add your edit icon here */}
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={editedData.phoneNumber}
+                  onChange={(e) => handleInputChange(e, "phoneNumber")}
+                />
+              ) : (
+                <span>{userData.phoneNumber}</span>
+              )}
             </div>
+            {isEditing ? (
+              <button onClick={handleSave}>Save</button>
+            ) : (
+              <button onClick={handleEdit}>Edit</button>
+            )}
           </div>
         </div>
       </div>
