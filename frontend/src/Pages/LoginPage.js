@@ -32,8 +32,8 @@ const LoginPage = ({ setIsAuthenticated }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.error) {
-          setError(data.error);
+        if (data.msg === "Invalid credentials") {
+          alert(data.msg);
         } else {
           setError(null);
           console.log("User logged in successfully", data);
@@ -72,7 +72,7 @@ const LoginPage = ({ setIsAuthenticated }) => {
               className="input-field"
             />
           </div>
-
+          {error && <div className="error-message">{error}</div>}
           <div className="button-container">
             <button type="submit" className="login-button">
               Login
