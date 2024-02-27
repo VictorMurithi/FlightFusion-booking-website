@@ -51,8 +51,25 @@ export default function Bookings() {
       console.error("Error fetching flights:", error.message);
     }
   };
-  
-  
+
+  const addFlightToBookings = async (flightId) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/bookings/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ flight_id: flightId })
+        });
+        if (!response.ok) {
+            throw new Error('Failed to add flight to bookings');
+        }
+    } catch (error) {
+        console.error('Error adding flight to bookings:', error.message);
+    }
+  };
 
   return (
     <div className="Bookingss">
@@ -96,7 +113,7 @@ export default function Bookings() {
         <td>{flight.departure_datetime}</td>
         <td>${flight.price}</td>
         <td>
-          <button className="book-button">Book</button>
+        <button className="book-button" onClick={() => addFlightToBookings(flight.id)}>Book</button>
         </td>
       </tr>
     ))
