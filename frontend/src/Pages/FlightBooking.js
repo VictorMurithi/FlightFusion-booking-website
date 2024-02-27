@@ -88,9 +88,14 @@ export default function Bookings() {
             />
           </div>
         </div>
-        <button type="submit" className="BookFlight-buttonn">
+        <div className="sbutton">
+        <button type="submit" className="SearchFlight-buttonn">
           Search Flights
         </button>
+        </div>
+
+
+       
       </form>
       <div className="flight-results">
         <h2>Flight Results</h2>
