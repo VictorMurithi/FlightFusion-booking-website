@@ -6,7 +6,6 @@ import Signup from './Pages/SignupPage';
 import Bookings from './Pages/BookingsPage';
 import Profile from './Pages/ProfilePage';
 import FlightBooking from './Pages/FlightBooking';
-import ResetPassword from './Pages/ResetingPassword';
 import ForgotPassword from './Pages/ForgotPassword';
 import Navbar from './Layout/Navbar';
 
@@ -36,7 +35,6 @@ function App() {
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/flightbooking" element={<FlightBooking setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
       </Routes>
     </Router>
