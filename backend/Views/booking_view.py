@@ -64,8 +64,8 @@ def add_flight_to_booking():
     new_booking = Booking(
         user_id=current_user_id,
         flight_id=flight.id,
-        departure_datetime=flight.departure_datetime.date(),  # Use departure_datetime from Flight
-        booking_datetime=datetime.utcnow(),  # Assuming you want to set booking_datetime to the current datetime
+        departure_datetime=flight.departure_datetime.date(),
+        booking_datetime=datetime.utcnow(), 
     )
 
     db.session.add(new_booking)
