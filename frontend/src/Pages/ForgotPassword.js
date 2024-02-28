@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "../Css/ForgotPassword.css";
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +34,15 @@ export default function ForgotPassword() {
       if (!response.ok) {
         setError(data.error || "Failed to change password");
       } else {
-        setMessage(data.message || "Password updated successfully");
+        setError("");
+        swal({
+          title: "Success!",
+          text: data.message || "Password updated successfully",
+          icon: "success",
+          button: "OK",
+        }).then(() => {
+          navigate("/login"); // Redirect to the login page
+        });
       }
     } catch (error) {
       setError("An error occurred while processing your request");
@@ -78,7 +89,6 @@ export default function ForgotPassword() {
           {error && <div className="error">{error}</div>}
           <button type="submit">Change Password</button>
         </form>
-        {message && <div className="message">{message}</div>}
       </div>
     </div>
   );
