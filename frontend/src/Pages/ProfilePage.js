@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Css/Profile.css";
 
 export default function Profile() {
   const [image, setImage] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState({
-    userName: "John",
-    email: "johndoe@gmail.com",
-    phoneNumber: "0712345678"
+    username: "",
+    email: "",
+    phone: ""
   });
   const [editedData, setEditedData] = useState({});
 
-<<<<<<< HEAD
-=======
   useEffect(() => {
     fetchUserData();
   }, []);
@@ -36,7 +34,6 @@ export default function Profile() {
     }
   };
 
->>>>>>> 2ea7061 (Patch and delete crud operations)
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -59,10 +56,28 @@ export default function Profile() {
     setEditedData({ ...userData });
   };
 
-  const handleSave = () => {
-    setIsEditing(false);
-    // You can add logic here to save the edited data to the backend
-    setUserData({ ...editedData });
+  const handleSave = async () => {
+    try {
+      const response = await fetch("/user", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(editedData)
+      });
+      if (response.ok) {
+        setUserData({ ...editedData });
+        setIsEditing(false);
+        alert("Profile updated successfully");
+        console.log("Profile updated successfully");
+      } else {
+        alert("Failed to update profile");
+        console.error("Failed to update profile");
+      }
+    } catch (error) {
+      console.error("An error occurred while updating profile:", error);
+    }
   };
 
   const handleInputChange = (e, field) => {
@@ -72,8 +87,6 @@ export default function Profile() {
     });
   };
 
-<<<<<<< HEAD
-=======
   const handleDeleteProfile = async () => {
     try {
       const response = await fetch("/user", {
@@ -85,6 +98,7 @@ export default function Profile() {
       if (response.ok) {
         alert("Profile deleted successfully");
         console.log("Profile deleted successfully");
+        // Perform logout here
       } else {
         console.error("Failed to delete profile");
       }
@@ -93,7 +107,6 @@ export default function Profile() {
     }
   };
 
->>>>>>> 2ea7061 (Patch and delete crud operations)
   return (
     <div className="profile-container">
       <div className="profile-2">
@@ -121,6 +134,7 @@ export default function Profile() {
                 className="button-profile"
                 onChange={handleImageChange}
                 accept="image/*"
+                title="Select an imageffff" // Custom title
               />
             </div>
           </div>
@@ -130,16 +144,11 @@ export default function Profile() {
               {isEditing ? (
                 <input
                   type="text"
-<<<<<<< HEAD
-                  value={editedData.userName}
-                  onChange={(e) => handleInputChange(e, "userName")}
-=======
                   value={editedData.username}
                   onChange={(e) => handleInputChange(e, "username")}
->>>>>>> 2ea7061 (Patch and delete crud operations)
                 />
               ) : (
-                <span>{userData.userName}</span>
+                <span>{userData.username}</span>
               )}
             </div>
             <div className="detail">
@@ -163,16 +172,23 @@ export default function Profile() {
                   onChange={(e) => handleInputChange(e, "phone")}
                 />
               ) : (
-                <span>{userData.phoneNumber}</span>
+                <span>{userData.phone}</span>
               )}
             </div>
             {isEditing ? (
-              <button onClick={handleSave}>Save</button>
+              <button onClick={handleSave} className="save-btn">
+                Save
+              </button>
             ) : (
-              <button onClick={handleEdit}>Edit</button>
+              <button onClick={handleEdit} className="edit-btn">
+                Edit
+              </button>
             )}
           </div>
         </div>
+        <button onClick={handleDeleteProfile} className="delete-btn">
+          Delete Profile
+        </button>
       </div>
     </div>
   );

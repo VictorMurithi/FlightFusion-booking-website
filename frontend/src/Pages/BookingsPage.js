@@ -48,13 +48,13 @@ const Bookings = () => {
         button: "OK",
       });
     } catch (error) {
-      console.error('Error canceling booking:', error.message);
+        console.error('Error canceling booking:', error.message);
     }
-  };
+};
+
 
   return (
     <div className="Bookingsss">
-      <Navbar />
       <div className="flight-resultsss">
         <h1>Current Bookings</h1>
         <table className="flight-tableee">
