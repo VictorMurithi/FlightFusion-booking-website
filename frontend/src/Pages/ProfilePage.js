@@ -1,15 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Css/Profile.css";
 
 export default function Profile() {
   const [image, setImage] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState({
-    userName: "John",
-    email: "johndoe@gmail.com",
-    phoneNumber: "0712345678"
+    username: "",
+    email: "",
+    phone: ""
   });
   const [editedData, setEditedData] = useState({});
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("/user", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUserData(data);
+      } else {
+        console.error("Failed to fetch user data");
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching user data:", error);
+    }
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -33,10 +56,28 @@ export default function Profile() {
     setEditedData({ ...userData });
   };
 
-  const handleSave = () => {
-    setIsEditing(false);
-    // You can add logic here to save the edited data to the backend
-    setUserData({ ...editedData });
+  const handleSave = async () => {
+    try {
+      const response = await fetch("/user", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(editedData)
+      });
+      if (response.ok) {
+        setUserData({ ...editedData });
+        setIsEditing(false);
+        alert("Profile updated successfully");
+        console.log("Profile updated successfully");
+      } else {
+        alert("Failed to update profile");
+        console.error("Failed to update profile");
+      }
+    } catch (error) {
+      console.error("An error occurred while updating profile:", error);
+    }
   };
 
   const handleInputChange = (e, field) => {
@@ -44,6 +85,26 @@ export default function Profile() {
       ...editedData,
       [field]: e.target.value
     });
+  };
+
+  const handleDeleteProfile = async () => {
+    try {
+      const response = await fetch("/user", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+      if (response.ok) {
+        alert("Profile deleted successfully");
+        console.log("Profile deleted successfully");
+        // Perform logout here
+      } else {
+        console.error("Failed to delete profile");
+      }
+    } catch (error) {
+      console.error("An error occurred while deleting profile:", error);
+    }
   };
 
   return (
@@ -73,6 +134,7 @@ export default function Profile() {
                 className="button-profile"
                 onChange={handleImageChange}
                 accept="image/*"
+                title="Select an imageffff" // Custom title
               />
             </div>
           </div>
@@ -82,11 +144,11 @@ export default function Profile() {
               {isEditing ? (
                 <input
                   type="text"
-                  value={editedData.userName}
-                  onChange={(e) => handleInputChange(e, "userName")}
+                  value={editedData.username}
+                  onChange={(e) => handleInputChange(e, "username")}
                 />
               ) : (
-                <span>{userData.userName}</span>
+                <span>{userData.username}</span>
               )}
             </div>
             <div className="detail">
@@ -106,20 +168,27 @@ export default function Profile() {
               {isEditing ? (
                 <input
                   type="text"
-                  value={editedData.phoneNumber}
-                  onChange={(e) => handleInputChange(e, "phoneNumber")}
+                  value={editedData.phone}
+                  onChange={(e) => handleInputChange(e, "phone")}
                 />
               ) : (
-                <span>{userData.phoneNumber}</span>
+                <span>{userData.phone}</span>
               )}
             </div>
             {isEditing ? (
-              <button onClick={handleSave}>Save</button>
+              <button onClick={handleSave} className="save-btn">
+                Save
+              </button>
             ) : (
-              <button onClick={handleEdit}>Edit</button>
+              <button onClick={handleEdit} className="edit-btn">
+                Edit
+              </button>
             )}
           </div>
         </div>
+        <button onClick={handleDeleteProfile} className="delete-btn">
+          Delete Profile
+        </button>
       </div>
     </div>
   );

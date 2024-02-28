@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../Css/FlightBooking.css";
-import Navbar from "../Layout/Navbar";
 import { useNavigate, useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
@@ -82,7 +81,6 @@ export default function Bookings() {
 
   return (
     <div className="Bookingss">
-      <Navbar />
       <h1>Book a flight with us</h1>
       <form onSubmit={handleSubmit} className="booking-form">
         <div className="form-row">
