@@ -100,3 +100,20 @@
   border: none;
   color: pink;
 }
+/* Profile.css */
+
+.detail input {
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add rounded corners */
+  padding: 8px; /* Add padding */
+  font-size: 16px; /* Adjust font size */
+  width: 100%; /* Make input fields fill their container */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  color: black;
+}
+
+.detail input:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add a subtle box shadow on focus */
+}

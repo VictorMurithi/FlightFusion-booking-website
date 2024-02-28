@@ -1,8 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Css/Profile.css";
 
 export default function Profile() {
   const [image, setImage] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    phone: ""
+  });
+  const [editedData, setEditedData] = useState({});
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("/user", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}` // Assuming you are storing the JWT token in local storage
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUserData(data);
+      } else {
+        // Handle error
+        console.error("Failed to fetch user data");
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching user data:", error);
+    }
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -20,6 +51,64 @@ export default function Profile() {
   const handleRemovePhoto = () => {
     setImage(null);
   };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    setEditedData({ ...userData });
+  };
+
+  const handleSave = async () => {
+    try {
+      const response = await fetch("/user", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(editedData)
+      });
+      if (response.ok) {
+        setUserData({ ...editedData });
+        setIsEditing(false);
+        alert("Profile updated successfully");
+        console.log("Profile updated successfully");
+      } else {
+        alert("Failed to update profile");
+        console.error("Failed to update profile");
+      }
+    } catch (error) {
+      console.error("An error occurred while updating profile:", error);
+    }
+  };
+  
+
+  const handleInputChange = (e, field) => {
+    setEditedData({
+      ...editedData,
+      [field]: e.target.value
+    });
+  };
+
+  const handleDeleteProfile = async () => {
+    try {
+      const response = await fetch("/user", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+      if (response.ok) {
+        alert("Profile deleted successfully");
+        console.log("Profile deleted successfully");
+        // Perform logout here
+      } else {
+        console.error("Failed to delete profile");
+      }
+    } catch (error) {
+      console.error("An error occurred while deleting profile:", error);
+    }
+  };
+  
 
   return (
     <div className="profile-container">
@@ -48,28 +137,54 @@ export default function Profile() {
                 className="button-profile"
                 onChange={handleImageChange}
                 accept="image/*"
-                
               />
             </div>
           </div>
           <div className="profile-details">
             <div className="detail">
               <label>User Name:</label>
-              <span>John </span>
-              {/* Add your edit icon here */}
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={editedData.username}
+                  onChange={(e) => handleInputChange(e, "userName")}
+                />
+              ) : (
+                <span>{userData.username}</span>
+              )}
             </div>
             <div className="detail">
               <label>Email:</label>
-              <span>johndoe@gmail.com</span>
-              {/* Add your edit icon here */}
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={editedData.email}
+                  onChange={(e) => handleInputChange(e, "email")}
+                />
+              ) : (
+                <span>{userData.email}</span>
+              )}
             </div>
             <div className="detail">
               <label>Phone Number:</label>
-              <span>0712345678</span>
-              {/* Add your edit icon here */}
+              {isEditing ? (
+                <input
+                  type="text"
+                  value={editedData.phoneNumber}
+                  onChange={(e) => handleInputChange(e, "phoneNumber")}
+                />
+              ) : (
+                <span>{userData.phone}</span>
+              )}
             </div>
+            {isEditing ? (
+              <button onClick={handleSave}>Save</button>
+            ) : (
+              <button onClick={handleEdit}>Edit</button>
+            )}
           </div>
         </div>
+        <button onClick={handleDeleteProfile}>Delete Profile</button>
       </div>
     </div>
   );

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../Layout/Navbar";
 import "../Css/Login.css";
+import swal from 'sweetalert';
 
 const LoginPage = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -32,19 +32,19 @@ const LoginPage = ({ setIsAuthenticated }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.error) {
-          setError(data.error);
+        if (data.msg === "Invalid credentials") {
+          swal("Error", data.msg, "error");
         } else {
-          setError(null);
           console.log("User logged in successfully", data);
-          alert(data.message);
-
-          // Store token in localStorage
+          swal("Success", data.message, "success");
           localStorage.setItem('token', data.access_token);
-
           setIsAuthenticated(true);
           navigate("/");
         }
+      })
+      .catch((error) => {
+        console.error("Error logging in:", error);
+        swal("Error", "An error occurred while logging in", "error");
       });
   };
 
@@ -72,7 +72,6 @@ const LoginPage = ({ setIsAuthenticated }) => {
               className="input-field"
             />
           </div>
-
           <div className="button-container">
             <button type="submit" className="login-button">
               Login
@@ -83,7 +82,6 @@ const LoginPage = ({ setIsAuthenticated }) => {
               <Link to="/forgotpassword">Forgot Password?</Link>
             </p>
           </div>
-
           <div className="Parag">
             <p>Don't have an account? </p>
             <Link to="/signup" className="signup-btn">

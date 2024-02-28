@@ -1,7 +1,7 @@
 from models import db, User
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token,jwt_required
-from werkzeug.security import check_password_hash
+from flask_jwt_extended import create_access_token,jwt_required, get_jwt_identity
+from werkzeug.security import check_password_hash, generate_password_hash
 
 auth_bp = Blueprint("auth_bp", __name__)
 
@@ -20,10 +20,10 @@ def login():
 
         user = User.query.filter_by(email=email).first()
         if not user:
-            return jsonify({"msg": "User not found"}), 404
+            return jsonify({"msg": "Invalid credentials"}), 401
 
         if not check_password_hash(user.password, password):
-            return jsonify({"msg": "Invalid email or password"}), 401
+            return jsonify({"msg": "Invalid credentials"}), 401
 
         access_token = create_access_token(identity=user.id)
 
@@ -79,9 +79,42 @@ def signup():
         # Log the exception for debugging purposes
         print(f"An error occurred: {str(e)}")
         return jsonify({"msg": "An error occurred while processing your request"}), 500
-
+    
 # Logout user
 @auth_bp.route("/logout", methods=["POST"])
 @jwt_required()
 def logout():
     return jsonify({"success": "Logged out successfully!"}), 201
+
+from flask import request, jsonify
+from werkzeug.security import generate_password_hash
+from models import db, User
+from flask_jwt_extended import jwt_required
+
+@auth_bp.route("/forgot_password", methods=["POST"])
+def forgot_password():
+    """
+    Handle forgot password requests.
+    """
+    # Get new password and email from request data
+    new_password = request.json.get('new_password')
+    email = request.json.get('email')
+
+    # Check if both new password and email are present in the request body
+    if not new_password or not email:
+        return jsonify({"error": "Both email and new password are required in the request body"}), 400
+
+    # Fetch user from database by email
+    user = User.query.filter_by(email=email).first()
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    # Hash the new password
+    hashed_password = generate_password_hash(new_password)
+
+    # Update user's password
+    user.password = hashed_password
+    db.session.commit()
+
+    return jsonify({"message": "Password updated successfully"}), 200
