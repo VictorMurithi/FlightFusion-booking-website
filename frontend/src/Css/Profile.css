@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-color: #f0f0f0; */
+  background-image: url("../img/profile.png");
+  background-size: cover;
+  height: 100vh;
+  
+}
+
+.profile-2 h1 {
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+.profile-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px; /* Adjust as needed */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.profile-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-picture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px; /* Adjust as needed */
+  padding-left: 60px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: white;
+  margin-bottom: 10px;
+  margin-left: -20%;
+  border: 2px solid #ff0000;
+  background-size: cover;
+  background-position: cover;
+}
+
+.button-profile {
+  border: none;
+  outline: none;
+  color: transparent;
+  cursor: pointer;
+}
+
+.remove-photo-button {
+  margin-left: 10px; /* Adjust as needed */
+}
+
+.profile-details {
+  flex-grow: 1;
+  /* margin-right: 20px;   */
+}
+
+.detail {
+  /* display: flex; */
+  justify-content: space-between;
+  /* align-items: flex-start;  */
+  margin-bottom: 10px;
+  margin-right: 120px;
+}
+.detail label {
+  color: black;
+}
+.detail span {
+  font-family: Poppins; /* Change the font family as needed */
+  font-size: 16px; /* Change the font size as needed */
+  font-weight: 400; /* Change the font weight as needed */
+  /* Add any other font-related styles as needed */
+}
+.material-symbols-outlined {
+  background-color: transparent !important;
+  display: flex;
+  border: none;
+  color: pink;
+}
+/* Profile.css */
+
+.detail input {
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Add rounded corners */
+  padding: 8px; /* Add padding */
+  font-size: 16px; /* Adjust font size */
+  width: 100%; /* Make input fields fill their container */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  color: black;
+}
+
+.detail input:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add a subtle box shadow on focus */
+}

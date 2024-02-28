@@ -36,6 +36,15 @@ class Booking(db.Model, SerializerMixin):
     user = relationship("User", back_populates="bookings")
     flight = relationship("Flight", back_populates="bookings")
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'flight_id': self.flight_id,
+            'booking_datetime': self.booking_datetime.strftime('%Y-%m-%d %H:%M:%S'),
+            'departure_datetime': self.departure_datetime.strftime('%Y-%m-%d %H:%M:%S')
+        }
+
 class Flight(db.Model, SerializerMixin):
     __tablename__ = 'flights'
 

@@ -8,13 +8,14 @@
   margin: 0 auto;
   background-image: url("../img/signup\ \(1\).png");
   background-size: cover;
-  height: 80vh;
+  
+  height: 100vh;
   position: relative;
   top: -4.2em;
   z-index: 1000;
 }
 .Bookingss h1 {
-  margin-left: 20rem;
+  margin-left: 18rem;
   margin-top: 5rem;
   font-size: 25px;
   font-family: Poppins;
@@ -30,7 +31,7 @@
   display: flex;
   /* justify-content: space-evenly; */
   justify-content: space-around;
-  margin-left: -4rem;
+  margin-left: 15rem;
 }
 
 .form-group {
@@ -49,12 +50,12 @@ label {
 input,
 select {
   width: 100%;
-  padding: 8px;
+  padding: 4px;
   border: 1px solid transparent; /* Make border transparent */
   border-bottom: 1px solid #fff; /* Add bottom border */
   background-color: transparent; /* Make background transparent */
   color: #fff; /* Set text color */
-  outline: none; /* Remove input outline */
+  outline: none; 
 }
 
 /* Add styles for select dropdown arrow */
@@ -82,7 +83,7 @@ select {
   margin: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.226);
   position: relative;
-  top: 7em;
+  /* top: 7em; */
 }
 
 .flight-results{
@@ -97,11 +98,11 @@ select {
     font-weight: 600;
     font-size: 25px;
     
-     margin-bottom: 4em;
+     /* margin-bottom: 4em; */
      text-align: center;
      padding-top: 4rem;
     color: #131313;
-    min-height: 40vh;
+    /* min-height: 40vh; */
   }
 
 .flight-table th {
@@ -144,6 +145,12 @@ select {
   padding: 0.3rem 1.2rem;
 }
 
+.sbutton{
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+  margin-left:20rem ;
+}
 .form-group input[type="date"] {
     width: 100%;
     padding: 8px;
@@ -172,5 +179,9 @@ select {
     background-color: #333; /* Background color for options */
     color: #fff; /* Text color for options */
   }
-  
-  
+  .SearchFlight-buttonn{
+    font-family: Poppins ;
+    font-size: 15px;
+    margin-top: -10px;
+    
+  }
