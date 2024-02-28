@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Bookings.css';
-// import Navbar from '../Layout/Navbar';
+
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -30,21 +30,26 @@ const Bookings = () => {
 
   const cancelBooking = async (bookingId) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`/bookings/${bookingId}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/bookings/${bookingId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to cancel booking');
+        } else {
+          alert('Booking canceled successfully');
+            console.log('Booking canceled successfully');
+            // Update UI or display success message here
         }
-      });
-      if (!response.ok) {
-        throw new Error('Failed to cancel booking');
-      }
-      setBookings(bookings.filter(booking => booking.id !== bookingId));
+        setBookings(bookings.filter(booking => booking.id !== bookingId));
     } catch (error) {
-      console.error('Error canceling booking:', error.message);
+        console.error('Error canceling booking:', error.message);
     }
-  };
+};
+
 
   return (
     <div className="Bookingsss">
