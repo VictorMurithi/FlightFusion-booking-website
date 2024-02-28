@@ -9,6 +9,9 @@
   background-image: url("../img/Currentbookings.png");
   background-size: cover;
   height: 100vh;
+  position: relative;
+  top: -4.2em;
+  z-index: 10;
 }
 body {
   background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
