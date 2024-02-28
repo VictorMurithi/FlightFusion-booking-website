@@ -29,21 +29,24 @@ const Bookings = () => {
 
   const cancelBooking = async (bookingId) => {
     try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(`/bookings/${bookingId}`, {
-            method: 'DELETE',
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        if (!response.ok) {
-            throw new Error('Failed to cancel booking');
-        } else {
-          alert('Booking canceled successfully');
-            console.log('Booking canceled successfully');
-            // Update UI or display success message here
+      const token = localStorage.getItem('token');
+      const response = await fetch(`/bookings/${bookingId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-        setBookings(bookings.filter(booking => booking.id !== bookingId));
+      });
+      if (!response.ok) {
+        throw new Error('Failed to cancel booking');
+      }
+      setBookings(bookings.filter(booking => booking.id !== bookingId));
+      // Display SweetAlert for successful booking cancellation
+      swal({
+        title: "Success!",
+        text: "Booking canceled successfully",
+        icon: "success",
+        button: "OK",
+      });
     } catch (error) {
         console.error('Error canceling booking:', error.message);
     }
@@ -65,17 +68,16 @@ const Bookings = () => {
           </thead>
           <tbody>
             {bookings.map(booking => (
-            <tr key={booking.id}>
-            <td>{booking.id}</td>
-            <td>{booking.departure_datetime}</td> 
-            <td>{booking.booking_datetime}</td>
-            <td>
-        <button className="remove-button" onClick={() => cancelBooking(booking.id)}>Remove</button>
-      </td>
-    </tr>
-  ))}
-</tbody>
-
+              <tr key={booking.id}>
+                <td>{booking.id}</td>
+                <td>{booking.departure_datetime}</td> 
+                <td>{booking.booking_datetime}</td>
+                <td>
+                  <button className="remove-button" onClick={() => cancelBooking(booking.id)}>Remove</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>

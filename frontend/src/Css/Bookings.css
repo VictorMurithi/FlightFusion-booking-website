@@ -10,18 +10,17 @@
   background-size: cover;
   height: 100vh;
   position: relative;
-  top: -4.2em;
-  z-index: 1000;
+  top: -9.2em;
+  z-index: 10;
 }
 .Bookingsss h1{
   display: flex;
   justify-content: center;
-  margin-top: 5rem;
+  padding-top: 15rem;
   font-size: 25px;
   font-family: Poppins;
   font-weight: 600;
   color: white;
-  
 
 }
 

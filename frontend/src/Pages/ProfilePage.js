@@ -20,14 +20,13 @@ export default function Profile() {
       const response = await fetch("/user", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}` // Assuming you are storing the JWT token in local storage
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       });
       if (response.ok) {
         const data = await response.json();
         setUserData(data);
       } else {
-        // Handle error
         console.error("Failed to fetch user data");
       }
     } catch (error) {
@@ -80,7 +79,6 @@ export default function Profile() {
       console.error("An error occurred while updating profile:", error);
     }
   };
-  
 
   const handleInputChange = (e, field) => {
     setEditedData({
@@ -108,7 +106,6 @@ export default function Profile() {
       console.error("An error occurred while deleting profile:", error);
     }
   };
-  
 
   return (
     <div className="profile-container">
@@ -137,6 +134,7 @@ export default function Profile() {
                 className="button-profile"
                 onChange={handleImageChange}
                 accept="image/*"
+                title="Select an imageffff" // Custom title
               />
             </div>
           </div>
@@ -147,7 +145,7 @@ export default function Profile() {
                 <input
                   type="text"
                   value={editedData.username}
-                  onChange={(e) => handleInputChange(e, "userName")}
+                  onChange={(e) => handleInputChange(e, "username")}
                 />
               ) : (
                 <span>{userData.username}</span>
@@ -170,21 +168,27 @@ export default function Profile() {
               {isEditing ? (
                 <input
                   type="text"
-                  value={editedData.phoneNumber}
-                  onChange={(e) => handleInputChange(e, "phoneNumber")}
+                  value={editedData.phone}
+                  onChange={(e) => handleInputChange(e, "phone")}
                 />
               ) : (
                 <span>{userData.phone}</span>
               )}
             </div>
             {isEditing ? (
-              <button onClick={handleSave}>Save</button>
+              <button onClick={handleSave} className="save-btn">
+                Save
+              </button>
             ) : (
-              <button onClick={handleEdit}>Edit</button>
+              <button onClick={handleEdit} className="edit-btn">
+                Edit
+              </button>
             )}
           </div>
         </div>
-        <button onClick={handleDeleteProfile}>Delete Profile</button>
+        <button onClick={handleDeleteProfile} className="delete-btn">
+          Delete Profile
+        </button>
       </div>
     </div>
   );
