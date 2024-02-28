@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Bookings.css';
-import Navbar from '../Layout/Navbar';
+// import Navbar from '../Layout/Navbar';
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -48,7 +48,6 @@ const Bookings = () => {
 
   return (
     <div className="Bookingsss">
-      <Navbar />
       <div className="flight-resultsss">
         <h1>Current Bookings</h1>
         <table className="flight-tableee">

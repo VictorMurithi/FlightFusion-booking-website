@@ -137,6 +137,8 @@ export default function Profile() {
                 className="button-profile"
                 onChange={handleImageChange}
                 accept="image/*"
+                title="Select an imageffff" // Custom title
+
               />
             </div>
           </div>
@@ -178,13 +180,13 @@ export default function Profile() {
               )}
             </div>
             {isEditing ? (
-              <button onClick={handleSave}>Save</button>
+              <button onClick={handleSave} className="save-btn">Save</button>
             ) : (
-              <button onClick={handleEdit}>Edit</button>
+              <button onClick={handleEdit} className="edit-btn">Edit</button>
             )}
           </div>
         </div>
-        <button onClick={handleDeleteProfile}>Delete Profile</button>
+        <button onClick={handleDeleteProfile} className="delete-btn">Delete Profile</button>
       </div>
     </div>
   );
