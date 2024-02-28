@@ -90,8 +90,6 @@ def update_user_details():
 
     else:
         return jsonify({"error": "User not found"}), 404
-<<<<<<< HEAD
-=======
 
     data = request.json
 
@@ -129,4 +127,3 @@ def update_user_details():
     db.session.commit()
 
     return jsonify({"success": "User updated successfully"}), 200
->>>>>>> 2ea7061 (Patch and delete crud operations)
