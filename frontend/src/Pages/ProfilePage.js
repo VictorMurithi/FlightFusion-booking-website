@@ -20,32 +20,6 @@ export default function Profile() {
       const response = await fetch("/user", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}` // Assuming you are storing the JWT token in local storage
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setUserData(data);
-      } else {
-        // Handle error
-        console.error("Failed to fetch user data");
-      }
-    } catch (error) {
-      console.error("An error occurred while fetching user data:", error);
-    }
-  };
-
-<<<<<<< HEAD
-=======
-  useEffect(() => {
-    fetchUserData();
-  }, []);
-
-  const fetchUserData = async () => {
-    try {
-      const response = await fetch("/user", {
-        method: "GET",
-        headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       });
@@ -60,7 +34,6 @@ export default function Profile() {
     }
   };
 
->>>>>>> 2ea7061 (Patch and delete crud operations)
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -106,7 +79,6 @@ export default function Profile() {
       console.error("An error occurred while updating profile:", error);
     }
   };
-  
 
   const handleInputChange = (e, field) => {
     setEditedData({
@@ -134,30 +106,7 @@ export default function Profile() {
       console.error("An error occurred while deleting profile:", error);
     }
   };
-  
 
-<<<<<<< HEAD
-=======
-  const handleDeleteProfile = async () => {
-    try {
-      const response = await fetch("/user", {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-        }
-      });
-      if (response.ok) {
-        alert("Profile deleted successfully");
-        console.log("Profile deleted successfully");
-      } else {
-        console.error("Failed to delete profile");
-      }
-    } catch (error) {
-      console.error("An error occurred while deleting profile:", error);
-    }
-  };
-
->>>>>>> 2ea7061 (Patch and delete crud operations)
   return (
     <div className="profile-container">
       <div className="profile-2">
@@ -186,7 +135,6 @@ export default function Profile() {
                 onChange={handleImageChange}
                 accept="image/*"
                 title="Select an imageffff" // Custom title
-
               />
             </div>
           </div>
@@ -196,13 +144,8 @@ export default function Profile() {
               {isEditing ? (
                 <input
                   type="text"
-<<<<<<< HEAD
-                  value={editedData.userName}
-                  onChange={(e) => handleInputChange(e, "userName")}
-=======
                   value={editedData.username}
                   onChange={(e) => handleInputChange(e, "username")}
->>>>>>> 2ea7061 (Patch and delete crud operations)
                 />
               ) : (
                 <span>{userData.username}</span>
@@ -233,13 +176,19 @@ export default function Profile() {
               )}
             </div>
             {isEditing ? (
-              <button onClick={handleSave} className="save-btn">Save</button>
+              <button onClick={handleSave} className="save-btn">
+                Save
+              </button>
             ) : (
-              <button onClick={handleEdit} className="edit-btn">Edit</button>
+              <button onClick={handleEdit} className="edit-btn">
+                Edit
+              </button>
             )}
           </div>
         </div>
-        <button onClick={handleDeleteProfile} className="delete-btn">Delete Profile</button>
+        <button onClick={handleDeleteProfile} className="delete-btn">
+          Delete Profile
+        </button>
       </div>
     </div>
   );
