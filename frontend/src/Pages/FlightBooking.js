@@ -81,7 +81,6 @@ export default function Bookings() {
 
   return (
     <div className="Bookingss">
-      <Navbar />
       <h1>Book a flight with us</h1>
       <form onSubmit={handleSubmit} className="booking-form">
         <div className="form-row">
