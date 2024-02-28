@@ -11,6 +11,32 @@ export default function Profile() {
   });
   const [editedData, setEditedData] = useState({});
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch("/user", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUserData(data);
+      } else {
+        console.error("Failed to fetch user data");
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching user data:", error);
+    }
+  };
+
+>>>>>>> 2ea7061 (Patch and delete crud operations)
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -46,6 +72,28 @@ export default function Profile() {
     });
   };
 
+<<<<<<< HEAD
+=======
+  const handleDeleteProfile = async () => {
+    try {
+      const response = await fetch("/user", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+      if (response.ok) {
+        alert("Profile deleted successfully");
+        console.log("Profile deleted successfully");
+      } else {
+        console.error("Failed to delete profile");
+      }
+    } catch (error) {
+      console.error("An error occurred while deleting profile:", error);
+    }
+  };
+
+>>>>>>> 2ea7061 (Patch and delete crud operations)
   return (
     <div className="profile-container">
       <div className="profile-2">
@@ -82,8 +130,13 @@ export default function Profile() {
               {isEditing ? (
                 <input
                   type="text"
+<<<<<<< HEAD
                   value={editedData.userName}
                   onChange={(e) => handleInputChange(e, "userName")}
+=======
+                  value={editedData.username}
+                  onChange={(e) => handleInputChange(e, "username")}
+>>>>>>> 2ea7061 (Patch and delete crud operations)
                 />
               ) : (
                 <span>{userData.userName}</span>
@@ -106,8 +159,8 @@ export default function Profile() {
               {isEditing ? (
                 <input
                   type="text"
-                  value={editedData.phoneNumber}
-                  onChange={(e) => handleInputChange(e, "phoneNumber")}
+                  value={editedData.phone}
+                  onChange={(e) => handleInputChange(e, "phone")}
                 />
               ) : (
                 <span>{userData.phoneNumber}</span>
