@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Css/FlightBooking.css";
+import Navbar from "../Layout/Navbar";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Bookings() {
@@ -63,21 +64,16 @@ export default function Bookings() {
             body: JSON.stringify({ flight_id: flightId })
         });
         if (!response.ok) {
-            console.error('Failed to add flight to bookings');
             throw new Error('Failed to add flight to bookings');
-        } else {
-            const data = await response.json();
-            alert('Flight added to bookings successfully');
-            console.log('Flight added to bookings successfully:', data);
         }
     } catch (error) {
         console.error('Error adding flight to bookings:', error.message);
     }
-};
-
+  };
 
   return (
     <div className="Bookingss">
+      <Navbar />
       <h1>Book a flight with us</h1>
       <form onSubmit={handleSubmit} className="booking-form">
         <div className="form-row">
