@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Bookings.css';
-import Navbar from '../Layout/Navbar';
-import swal from 'sweetalert';
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);

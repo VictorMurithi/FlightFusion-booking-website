@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../Css/FlightBooking.css";
-import Navbar from "../Layout/Navbar";
 import { useNavigate, useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
