@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Bookings.css';
 import Navbar from '../Layout/Navbar';
+import swal from 'sweetalert';
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -41,6 +42,13 @@ const Bookings = () => {
         throw new Error('Failed to cancel booking');
       }
       setBookings(bookings.filter(booking => booking.id !== bookingId));
+      // Display SweetAlert for successful booking cancellation
+      swal({
+        title: "Success!",
+        text: "Booking canceled successfully",
+        icon: "success",
+        button: "OK",
+      });
     } catch (error) {
       console.error('Error canceling booking:', error.message);
     }
@@ -62,17 +70,16 @@ const Bookings = () => {
           </thead>
           <tbody>
             {bookings.map(booking => (
-            <tr key={booking.id}>
-            <td>{booking.id}</td>
-            <td>{booking.departure_datetime}</td> 
-            <td>{booking.booking_datetime}</td>
-            <td>
-        <button className="remove-button" onClick={() => cancelBooking(booking.id)}>Remove</button>
-      </td>
-    </tr>
-  ))}
-</tbody>
-
+              <tr key={booking.id}>
+                <td>{booking.id}</td>
+                <td>{booking.departure_datetime}</td> 
+                <td>{booking.booking_datetime}</td>
+                <td>
+                  <button className="remove-button" onClick={() => cancelBooking(booking.id)}>Remove</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
