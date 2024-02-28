@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../Css/FlightBooking.css";
-
 import { useNavigate, useLocation } from "react-router-dom";
+import swal from 'sweetalert';
 
 export default function Bookings() {
   const [form, setForm] = useState({
@@ -54,26 +54,28 @@ export default function Bookings() {
 
   const addFlightToBookings = async (flightId) => {
     try {
-        const token = localStorage.getItem('token');
-        const response = await fetch('/bookings/add', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ flight_id: flightId })
+      const token = localStorage.getItem('token');
+      const response = await fetch('/bookings/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ flight_id: flightId })
+      });
+      if (!response.ok) {
+        throw new Error('Failed to add flight to bookings');
+      } else {
+        // Display SweetAlert for successful booking
+        swal({
+          title: "Success!",
+          text: "Flight booked successfully",
+          icon: "success",
+          button: "OK",
         });
-        if (!response.ok) {
-            console.error('Failed to add flight to bookings');
-            throw new Error('Failed to add flight to bookings');
-        } else {
-            const data = await response.json();
-            console.log('Flight added to bookings successfully:', data);
-            alert('Flight added to bookings successfully');
-          
-        }
+      }
     } catch (error) {
-        console.error('Error adding flight to bookings:', error.message);
+      console.error('Error adding flight to bookings:', error.message);
     }
   };
 
@@ -94,13 +96,10 @@ export default function Bookings() {
           </div>
         </div>
         <div className="sbutton">
-        <button type="submit" className="SearchFlight-buttonn">
-          Search Flights
-        </button>
+          <button type="submit" className="SearchFlight-buttonn">
+            Search Flights
+          </button>
         </div>
-
-
-       
       </form>
       <div className="flight-results">
         <h2>Flight Results</h2>
@@ -115,25 +114,24 @@ export default function Bookings() {
             </tr>
           </thead>
           <tbody>
-  {flights.length > 0 ? (
-    flights.map((flight) => (
-      <tr key={flight.id}>
-        <td>{flight.airline}</td>
-        <td>{flight.destination}</td>
-        <td>{flight.departure_datetime}</td>
-        <td>${flight.price}</td>
-        <td>
-        <button className="book-button" onClick={() => addFlightToBookings(flight.id)}>Book</button>
-        </td>
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan="5">No flights available</td>
-    </tr>
-  )}
-</tbody>
-
+            {flights.length > 0 ? (
+              flights.map((flight) => (
+                <tr key={flight.id}>
+                  <td>{flight.airline}</td>
+                  <td>{flight.destination}</td>
+                  <td>{flight.departure_datetime}</td>
+                  <td>${flight.price}</td>
+                  <td>
+                    <button className="book-button" onClick={() => addFlightToBookings(flight.id)}>Book</button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5">No flights available</td>
+              </tr>
+            )}
+          </tbody>
         </table>
       </div>
     </div>
