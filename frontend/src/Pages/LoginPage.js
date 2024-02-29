@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../Layout/Navbar";
 import "../Css/Login.css";
@@ -10,6 +10,15 @@ const LoginPage = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check for authentication token on page load
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true);
+      navigate("/"); // Redirect to home page if already authenticated
+    }
+  }, [setIsAuthenticated, navigate]);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
