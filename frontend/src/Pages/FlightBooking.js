@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../Css/FlightBooking.css";
-import {useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
-const url = "https://flightfusion-booking-website.onrender.com"
+const url = "https://flightfusion-booking-website.onrender.com";
+
 export default function Bookings() {
   const [form, setForm] = useState({
     destination: "",
@@ -76,6 +77,13 @@ export default function Bookings() {
       }
     } catch (error) {
       console.error('Error adding flight to bookings:', error.message);
+      // Display SweetAlert for error in booking
+      swal({
+        title: "Error!",
+        text: "Failed to book the flight",
+        icon: "error",
+        button: "OK",
+      });
     }
   };
 
