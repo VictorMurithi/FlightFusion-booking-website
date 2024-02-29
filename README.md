@@ -7,9 +7,6 @@
 [![license](https://img.shields.io/badge/license-%20MIT%20-green.svg)](./LICENSE)
 ![Gunicorn version](https://img.shields.io/badge/gunicorn-21.2.0-orange.svg)
 
-![img.png](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExejZpeWFvbGIzNXhvaDQxZjRxeDR1ZXFjaHgwODV0NTd4OTZxamQxeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qPl50m6fKl5RA4Bp1e/giphy.gif)
-
-![img.png](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHAybTFsaXU1dzVtMnN6MTJuNmxwbnh0Nmo4ZGc3MWtvZWJ1dDNoNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/F4RaEbXsSMZp1lpBVI/giphy.gif)
 
 ## By Victor Murithi, MaryShekhinah Murega, Evan Keya, Steve Maina, Chris Ruto and Ian Kimani.
 
