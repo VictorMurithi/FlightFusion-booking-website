@@ -1,4 +1,12 @@
 # FlightFusion-booking-website, 29/02/2024
+ ![JavaScript version](https://img.shields.io/badge/logo-javascript-blue?logo=javascript)
+![python version](https://img.shields.io/badge/python-3.10.12-blue.svg)
+![Flask version](https://img.shields.io/badge/flask-2.3.3-red.svg)
+![Flask-RESTX version](https://img.shields.io/badge/Flask_RESTX-1.1.0-cyan.svg)
+![Pytest version](https://img.shields.io/badge/pytest-7.4.2-white.svg)
+[![license](https://img.shields.io/badge/license-%20MIT%20-green.svg)](./LICENSE)
+![Gunicorn version](https://img.shields.io/badge/gunicorn-21.2.0-orange.svg)
+
 
 ## By Victor Murithi, MaryShekhinah Murega, Evan Keya, Steve Maina, Chris Ruto and Ian Kimani.
 
@@ -65,6 +73,8 @@ The project aims to replicate key features of flight-booking system, including u
 - React
 - Flask
 - SweetAlert
+
+
 
 ## Support and Contact details
 - Email: ianmwng@gmail.com
