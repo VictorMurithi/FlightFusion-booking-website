@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Bookings.css';
+import swal from 'sweetalert';
 
+const url = "https://flightfusion-booking-website.onrender.com";
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
 
@@ -8,7 +10,7 @@ const Bookings = () => {
     const fetchBookings = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('/bookings', {
+        const response = await fetch(`${url}/bookings`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`
@@ -30,7 +32,7 @@ const Bookings = () => {
   const cancelBooking = async (bookingId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`/bookings/${bookingId}`, {
+      const response = await fetch(`${url}/bookings/${bookingId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`
