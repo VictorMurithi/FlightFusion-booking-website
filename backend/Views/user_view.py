@@ -1,6 +1,6 @@
 from models import db
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity,unset_jwt_cookies
 
 from models import User
 
@@ -22,54 +22,62 @@ def user():
     
     return jsonify({"message": "User not found"}), 404
 
-#delete user
+# Delete user
 @user_bp.route('/user', methods=['DELETE'])
 @jwt_required()
 def delete_user():
-    user_id = get_jwt_identity() 
+    user_id = get_jwt_identity()
     user = User.query.get(user_id)
 
     if user:
         db.session.delete(user)
         db.session.commit()
-        response = jsonify({"success": "User deleted successfully"}), 200
+        response = jsonify({"success": "User deleted successfully"})
+        unset_jwt_cookies(response)
+        return response, 200
     else:
-        response = jsonify({"error": "User does not exist"}), 404
-
-    return response
-#update user details
+        response = jsonify({"error": "User does not exist"})
+        return response, 404
+    
 @user_bp.route('/user', methods=['PATCH'])
 @jwt_required()
 def update_user_details():
-    user_id = get_jwt_identity()  
-    user = User.query.filter_by(id=user_id).first()
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
 
-    if user:
-        data = request.get_json()
-
-        name = data.get('name', user.name)  
-        email = data.get('email', user.email)  
-        phone = data.get('phone', user.phone)  
-
-        user.name = name.title()
-
-        # Check if the provided email is different from the current email
-        if email != user.email:
-            check_email = User.query.filter_by(email=email).first()
-            if check_email:
-                return jsonify({"error": f"The email: {email} already exists"}), 404
-            user.email = email
-
-        # Check if the provided phone is different from the current phone
-        if phone != user.phone:
-            check_phone = User.query.filter_by(phone=phone).first()
-            if check_phone:
-                return jsonify({"error": f"The phone: {phone} already exists"}), 404
-            user.phone = phone
-
-        # Update the user
-        db.session.commit()
-        return jsonify({"success": "User updated successfully"}), 200
-
-    else:
+    if not user:
         return jsonify({"error": "User not found"}), 404
+
+    data = request.json
+
+    # Validate and sanitize the input data
+    username = data.get('username', '').strip()
+    email = data.get('email', '').strip().lower()
+    phone = data.get('phone', '').strip()
+
+    # Data validation
+    if not username:
+        return jsonify({"error": "Name is required"}), 400
+    if not email:
+        return jsonify({"error": "Email is required"}), 400
+    if phone and (not phone.isdigit() or len(phone) != 10):
+        return jsonify({"error": "Phone number must be 10 digits"}), 400
+
+    # Check if the provided email is different from the current email
+    if email != user.email:
+        check_email = User.query.filter_by(email=email).first()
+        if check_email:
+            return jsonify({"error": f"The email: {email} already exists"}), 400
+        user.email = email
+
+    # Check if the provided phone is different from the current phone
+    if phone != user.phone:
+        check_phone = User.query.filter_by(phone=phone).first()
+        if check_phone:
+            return jsonify({"error": f"The phone: {phone} already exists"}), 400
+        user.phone = phone
+
+    # Update the user
+    user.username = username
+    db.session.commit()
+    return jsonify({"success": "User updated successfully"}), 200

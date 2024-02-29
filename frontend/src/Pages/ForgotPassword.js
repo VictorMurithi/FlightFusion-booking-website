@@ -3,6 +3,7 @@ import "../Css/ForgotPassword.css";
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
 
+const url = "https://flightfusion-booking-website.onrender.com";
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -21,7 +22,7 @@ export default function ForgotPassword() {
     }
 
     try {
-      const response = await fetch("/forgot_password", {
+      const response = await fetch(`${url}/forgot_password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
