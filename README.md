@@ -1,5 +1,5 @@
 # FlightFusion-booking-website, 29/02/2024
-
+ ![JavaScript version](https://img.shields.io/badge/logo-javascript-blue?logo=javascript)
 ![python version](https://img.shields.io/badge/python-3.10.12-blue.svg)
 ![Flask version](https://img.shields.io/badge/flask-2.3.3-red.svg)
 ![Flask-RESTX version](https://img.shields.io/badge/Flask_RESTX-1.1.0-cyan.svg)
