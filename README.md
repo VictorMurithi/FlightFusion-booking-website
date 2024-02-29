@@ -1,5 +1,16 @@
 # FlightFusion-booking-website, 29/02/2024
 
+![python version](https://img.shields.io/badge/python-3.10.12-blue.svg)
+![Flask version](https://img.shields.io/badge/flask-2.3.3-red.svg)
+![Flask-RESTX version](https://img.shields.io/badge/Flask_RESTX-1.1.0-cyan.svg)
+![Pytest version](https://img.shields.io/badge/pytest-7.4.2-white.svg)
+[![license](https://img.shields.io/badge/license-%20MIT%20-green.svg)](./LICENSE)
+![Gunicorn version](https://img.shields.io/badge/gunicorn-21.2.0-orange.svg)
+
+![img.png](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExejZpeWFvbGIzNXhvaDQxZjRxeDR1ZXFjaHgwODV0NTd4OTZxamQxeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qPl50m6fKl5RA4Bp1e/giphy.gif)
+
+![img.png](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHAybTFsaXU1dzVtMnN6MTJuNmxwbnh0Nmo4ZGc3MWtvZWJ1dDNoNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/F4RaEbXsSMZp1lpBVI/giphy.gif)
+
 ## By Victor Murithi, MaryShekhinah Murega, Evan Keya, Steve Maina, Chris Ruto and Ian Kimani.
 
 For this repository , We are working on creating a flight booking website that provides users with a place whereby they can book their flights to various destinations
@@ -64,6 +75,8 @@ The project aims to replicate key features of flight-booking system, including u
 - React
 - Flask
 - SweetAlert
+
+
 
 ## Support and Contact details
 - Email: ianmwng@gmail.com
