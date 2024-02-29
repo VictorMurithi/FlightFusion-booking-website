@@ -10,6 +10,7 @@ export default function Navbar({ isAuthenticated }) {
         console.log("Logout clicked");
         localStorage.removeItem("token");
         navigate("/");
+        window.location.reload();
     };
 
     return (
