@@ -4,6 +4,7 @@ import "../Css/Signup.css";
 import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
 
+const url = "https://flightfusion-booking-website.onrender.com";
 export default function Signup({ setIsAuthenticated }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ export default function Signup({ setIsAuthenticated }) {
       return;
     }
 
-    fetch("/signup", {
+    fetch(`${url}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

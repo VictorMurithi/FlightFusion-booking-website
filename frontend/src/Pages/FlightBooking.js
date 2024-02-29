@@ -3,6 +3,7 @@ import "../Css/FlightBooking.css";
 import {useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
+const url = "https://flightfusion-booking-website.onrender.com"
 export default function Bookings() {
   const [form, setForm] = useState({
     destination: "",
@@ -33,7 +34,7 @@ export default function Bookings() {
 
   const fetchFlights = async (destination) => {
     try {
-      const response = await fetch("/flights", {
+      const response = await fetch(`${url}/flights`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +55,7 @@ export default function Bookings() {
   const addFlightToBookings = async (flightId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/bookings/add', {
+      const response = await fetch(`${url}/bookings/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
