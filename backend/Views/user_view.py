@@ -38,11 +38,11 @@ def delete_user():
     else:
         response = jsonify({"error": "User does not exist"})
         return response, 404
-
+    
 @user_bp.route('/user', methods=['PATCH'])
 @jwt_required()
 def update_user_details():
-    user_id = get_jwt_identity()  
+    user_id = get_jwt_identity()
     user = User.query.get(user_id)
 
     if not user:
@@ -58,9 +58,9 @@ def update_user_details():
     # Data validation
     if not username:
         return jsonify({"error": "Name is required"}), 400
-    if email :
+    if not email:
         return jsonify({"error": "Email is required"}), 400
-    if phone and not phone.isdigit() or len(phone) != 10:
+    if phone and (not phone.isdigit() or len(phone) != 10):
         return jsonify({"error": "Phone number must be 10 digits"}), 400
 
     # Check if the provided email is different from the current email
@@ -77,9 +77,7 @@ def update_user_details():
             return jsonify({"error": f"The phone: {phone} already exists"}), 400
         user.phone = phone
 
-        # Update the user
-        db.session.commit()
-        return jsonify({"success": "User updated successfully"}), 200
-
-    else:
-        return jsonify({"error": "User not found"}), 404
+    # Update the user
+    user.username = username
+    db.session.commit()
+    return jsonify({"success": "User updated successfully"}), 200
