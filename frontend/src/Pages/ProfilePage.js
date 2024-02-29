@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../Css/Profile.css";
+import swal from "sweetalert";
 
-export default function Profile() {
+const Profile = () => {
   const [image, setImage] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [userData, setUserData] = useState({
@@ -69,10 +70,9 @@ export default function Profile() {
       if (response.ok) {
         setUserData({ ...editedData });
         setIsEditing(false);
-        alert("Profile updated successfully");
-        console.log("Profile updated successfully");
+        swal("Success!", "Profile updated successfully", "success");
       } else {
-        alert("Failed to update profile");
+        swal("Error!", "Failed to update profile", "error");
         console.error("Failed to update profile");
       }
     } catch (error) {
@@ -96,10 +96,9 @@ export default function Profile() {
         }
       });
       if (response.ok) {
-        alert("Profile deleted successfully");
-        console.log("Profile deleted successfully");
-        // Perform logout here
+        swal("Success!", "Profile deleted successfully", "success");
       } else {
+        swal("Error!", "Failed to delete profile", "error");
         console.error("Failed to delete profile");
       }
     } catch (error) {
@@ -176,20 +175,29 @@ export default function Profile() {
               )}
             </div>
             {isEditing ? (
-              <button onClick={handleSave} className="save-btn">
-                Save
-              </button>
+              <>
+                <button onClick={handleSave} className="save-btn">
+                  Save
+                </button>
+                <button onClick={() => setIsEditing(false)} className="cancel-btn">
+                  Cancel
+                </button>
+              </>
             ) : (
               <button onClick={handleEdit} className="edit-btn">
                 Edit
               </button>
             )}
+            {!isEditing && (
+              <button onClick={handleDeleteProfile} className="delete-btn">
+                Delete Profile
+              </button>
+            )}
           </div>
         </div>
-        <button onClick={handleDeleteProfile} className="delete-btn">
-          Delete Profile
-        </button>
       </div>
     </div>
   );
-}
+};
+
+export default Profile;
