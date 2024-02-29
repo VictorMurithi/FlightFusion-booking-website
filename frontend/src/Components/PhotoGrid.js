@@ -8,6 +8,8 @@ import img4 from '../img/g4.png';
 import img5 from '../img/g5.png';
 import img6 from '../img/g6.png';
 
+const url = "https://flightfusion-booking-website.onrender.com";
+
 const PhotoGrid = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Define isAuthenticated state
   const destinations = [
@@ -31,7 +33,7 @@ const PhotoGrid = () => {
 
   const handleDestinationClick = async (destination) => {
     try {
-      const response = await fetch('/flights', {
+      const response = await fetch(`${url}/flights`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

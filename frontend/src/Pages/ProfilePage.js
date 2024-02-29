@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../Css/Profile.css";
 import swal from "sweetalert";
 
+const url = "https://flightfusion-booking-website.onrender.com";
+
 const Profile = () => {
   const [image, setImage] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -18,7 +20,7 @@ const Profile = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch("/user", {
+      const response = await fetch(`${url}/user`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -59,7 +61,7 @@ const Profile = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch("/user", {
+      const response = await fetch(`${url}/user`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +91,7 @@ const Profile = () => {
 
   const handleDeleteProfile = async () => {
     try {
-      const response = await fetch("/user", {
+      const response = await fetch(`${url}/user`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
