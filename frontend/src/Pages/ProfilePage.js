@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Css/Profile.css";
+import swal from "sweetalert";
 
 const Profile = () => {
   const [image, setImage] = useState(null);
@@ -69,10 +70,9 @@ const Profile = () => {
       if (response.ok) {
         setUserData({ ...editedData });
         setIsEditing(false);
-        alert("Profile updated successfully");
-        console.log("Profile updated successfully");
+        swal("Success!", "Profile updated successfully", "success");
       } else {
-        alert("Failed to update profile");
+        swal("Error!", "Failed to update profile", "error");
         console.error("Failed to update profile");
       }
     } catch (error) {
@@ -96,9 +96,9 @@ const Profile = () => {
         }
       });
       if (response.ok) {
-        alert("Profile deleted successfully");
-        console.log("Profile deleted successfully");
+        swal("Success!", "Profile deleted successfully", "success");
       } else {
+        swal("Error!", "Failed to delete profile", "error");
         console.error("Failed to delete profile");
       }
     } catch (error) {
