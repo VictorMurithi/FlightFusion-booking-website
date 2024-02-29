@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../Css/FlightBooking.css";
-import Navbar from "../Layout/Navbar";
-import { useNavigate, useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
+const url = "https://flightfusion-booking-website.onrender.com"
 export default function Bookings() {
   const [form, setForm] = useState({
     destination: "",
   });
   const [flights, setFlights] = useState([]);
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function Bookings() {
 
   const fetchFlights = async (destination) => {
     try {
-      const response = await fetch("/flights", {
+      const response = await fetch(`${url}/flights`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +55,7 @@ export default function Bookings() {
   const addFlightToBookings = async (flightId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/bookings/add', {
+      const response = await fetch(`${url}/bookings/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +81,6 @@ export default function Bookings() {
 
   return (
     <div className="Bookingss">
-      <Navbar />
       <h1>Book a flight with us</h1>
       <form onSubmit={handleSubmit} className="booking-form">
         <div className="form-row">

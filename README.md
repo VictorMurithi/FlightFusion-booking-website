@@ -1,6 +1,6 @@
 # FlightFusion-booking-website, 29/02/2024
 
-## By Victor Murithi, MaryShekhinah Murega, Evan Keya, Steve Maina and Ian Kimani.
+## By Victor Murithi, MaryShekhinah Murega, Evan Keya, Steve Maina, Chris Ruto and Ian Kimani.
 
 For this repository , We are working on creating a flight booking website that provides users with a place whereby they can book their flights to various destinations
 The project aims to replicate key features of flight-booking system, including user authentication, airlines listing for various destinations,search functionality and booking system.

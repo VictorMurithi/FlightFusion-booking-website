@@ -8,15 +8,14 @@
   margin: 0 auto;
   background-image: url("../img/signup\ \(1\).png");
   background-size: cover;
-  
   height: 100vh;
   position: relative;
-  top: -4.2em;
-  z-index: 1000;
+  top: -9.2em;
+  z-index: 10;
 }
 .Bookingss h1 {
   margin-left: 18rem;
-  margin-top: 5rem;
+  padding-top: 12rem;
   font-size: 25px;
   font-family: Poppins;
   font-weight: 600;
@@ -98,10 +97,10 @@ select {
     font-weight: 600;
     font-size: 25px;
     
-     /* margin-bottom: 4em; */
+     margin-bottom: 2em;
      text-align: center;
      padding-top: 4rem;
-    color: #131313;
+    color: #ffffff;
     /* min-height: 40vh; */
   }
 

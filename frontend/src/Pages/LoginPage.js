@@ -4,6 +4,8 @@ import Navbar from "../Layout/Navbar";
 import "../Css/Login.css";
 import swal from 'sweetalert';
 
+const url = "https://flightfusion-booking-website.onrender.com";
+
 const LoginPage = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +22,7 @@ const LoginPage = ({ setIsAuthenticated }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    fetch("/login", {
+    fetch(`${url}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
