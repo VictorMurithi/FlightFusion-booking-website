@@ -58,9 +58,10 @@ The project aims to replicate key features of flight-booking system, including u
 - An authenticated user can view all the bookings that they have booked.
 
 ## live server
-- to access the frontend here is the link:
+- to access the frontend here is the link: https://flight-fusion-booking-website.vercel.app/
 
-- to access the backend here is the link:
+- to access the backend here is the link: https://flightfusion-booking-website.onrender.com
+
 
 ## Known Bugs
 - The application works perfectly well, no bugs.
