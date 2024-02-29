@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/Bookings.css';
+import swal from 'sweetalert';
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
