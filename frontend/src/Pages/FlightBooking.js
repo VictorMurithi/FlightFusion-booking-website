@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Css/FlightBooking.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
 export default function Bookings() {
@@ -8,7 +8,6 @@ export default function Bookings() {
     destination: "",
   });
   const [flights, setFlights] = useState([]);
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
