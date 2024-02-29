@@ -38,7 +38,8 @@ const LoginPage = ({ setIsAuthenticated }) => {
           swal("Error", data.msg, "error");
         } else {
           console.log("User logged in successfully", data);
-          swal("Success", data.message, "success");
+          const successMessage = data.message || "Login successful";
+          swal("Success", successMessage, "success");
           localStorage.setItem('token', data.access_token);
           setIsAuthenticated(true);
           navigate("/");
