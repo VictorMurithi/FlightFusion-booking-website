@@ -71,7 +71,9 @@ def seed_users(num_users, faker):
         username = faker.name()
         email = faker.email()
         password = faker.password()
-        phone = faker.phone_number()
+        
+        # Generate a phone number with up to 10 digits
+        phone = faker.numerify(text='##########')
 
         # Hash the password
         hashed_password = generate_password_hash(password)
@@ -83,6 +85,7 @@ def seed_users(num_users, faker):
             password=hashed_password
         )
         db.session.add(user)
+
 
 def seed_bookings(num_bookings, num_users, num_flights, faker):
     """Seed fake bookings."""
