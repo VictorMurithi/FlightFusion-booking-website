@@ -62,6 +62,10 @@ The project aims to replicate key features of flight-booking system, including u
 
 - to access the backend here is the link: https://flightfusion-booking-website.onrender.com
 
+## link to presentation slides
+
+- https://www.canva.com/design/DAF-HB5-4Pg/zO1D5X81oe8PxCfiP4hfIw/edit?utm_content=DAF-HB5-4Pg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 
 ## Known Bugs
 - The application works perfectly well, no bugs.
