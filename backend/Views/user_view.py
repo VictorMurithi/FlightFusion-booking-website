@@ -1,6 +1,6 @@
 from models import db
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, get_jwt_identity,unset_jwt_cookies
+from flask_jwt_extended import jwt_required, get_jwt_identity, unset_jwt_cookies
 
 from models import User
 
@@ -20,7 +20,7 @@ def user():
             }
         ), 200
     
-    return jsonify({"message": "User not found"}), 404
+    return jsonify({"error": "User not found"}), 404
 
 # Delete user
 @user_bp.route('/user', methods=['DELETE'])
@@ -30,14 +30,17 @@ def delete_user():
     user = User.query.get(user_id)
 
     if user:
-        db.session.delete(user)
-        db.session.commit()
-        response = jsonify({"success": "User deleted successfully"})
-        unset_jwt_cookies(response)
-        return response, 200
+        try:
+            db.session.delete(user)
+            db.session.commit()
+            response = jsonify({"success": "User deleted successfully"})
+            unset_jwt_cookies(response)
+            return response, 200
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({"error": str(e)}), 500
     else:
-        response = jsonify({"error": "User does not exist"})
-        return response, 404
+        return jsonify({"error": "User does not exist"}), 404
     
 @user_bp.route('/user', methods=['PATCH'])
 @jwt_required()
@@ -79,5 +82,10 @@ def update_user_details():
 
     # Update the user
     user.username = username
-    db.session.commit()
-    return jsonify({"success": "User updated successfully"}), 200
+
+    try:
+        db.session.commit()
+        return jsonify({"success": "User updated successfully"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500

@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from "../Layout/Navbar";
 import "../Css/Login.css";
 import swal from 'sweetalert';
 
+const url = "https://flightfusion-booking-website.onrender.com";
+
 const LoginPage = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check for authentication token on page load
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true);
+      navigate("/"); // Redirect to home page if already authenticated
+    }
+  }, [setIsAuthenticated, navigate]);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -20,7 +31,7 @@ const LoginPage = ({ setIsAuthenticated }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    fetch("/login", {
+    fetch(`${url}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +47,8 @@ const LoginPage = ({ setIsAuthenticated }) => {
           swal("Error", data.msg, "error");
         } else {
           console.log("User logged in successfully", data);
-          swal("Success", data.message, "success");
+          const successMessage = data.message || "Login successful";
+          swal("Success", successMessage, "success");
           localStorage.setItem('token', data.access_token);
           setIsAuthenticated(true);
           navigate("/");

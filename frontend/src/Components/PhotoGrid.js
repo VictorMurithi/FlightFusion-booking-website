@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Figure } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import img1 from '../img/g1.png';
 import img2 from '../img/g2.png';
 import img3 from '../img/g3.png';
@@ -9,8 +8,9 @@ import img4 from '../img/g4.png';
 import img5 from '../img/g5.png';
 import img6 from '../img/g6.png';
 
+const url = "https://flightfusion-booking-website.onrender.com";
+
 const PhotoGrid = () => {
-  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Define isAuthenticated state
   const destinations = [
     { name: 'Tokyo', img: img1 },
@@ -33,7 +33,7 @@ const PhotoGrid = () => {
 
   const handleDestinationClick = async (destination) => {
     try {
-      const response = await fetch('/flights', {
+      const response = await fetch(`${url}/flights`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
